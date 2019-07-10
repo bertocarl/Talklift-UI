@@ -48,7 +48,7 @@
 
 <script>
 import axios from "axios";
-
+import store from './../store';
 
 export default {
   name: "Signup",
@@ -60,14 +60,14 @@ export default {
       }
     };
   },
-
-
   methods: {
     signup() {
+      let self = this;
       axios
         .post("register/", this.form)
-        .then(function(result) {
-          console.log("Success", result.data);
+        .then(function(resp) {
+          store.commit('setAccessToken', resp.data.token);
+          self.$router.push({name: 'update_business'});
         })
         .catch(function(err) {
           console.log("Error", err);

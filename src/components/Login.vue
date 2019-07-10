@@ -43,9 +43,9 @@
 
 <script>
 import axios from "axios";
+import store from './../store';
 
 export default {
-  name: "Login",
   data() {
     return {
       form: {
@@ -57,15 +57,14 @@ export default {
 
   methods: {
     login: function() {
+      let self = this;
       axios
         .post("authenticate/", this.form)
         .then(resp => {
-          const token = resp.data.token
-          localStorage.setItem('user-token', token)
-          console.log("Success", resp.data);
+          store.commit('setAccessToken', resp.data.token);
+           self.$router.push({name:'index'});
         })
         .catch(err => {
-          localStorage.removeItem('user-token')
           console.log("Error", err);
         });
     }
