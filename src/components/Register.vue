@@ -65,9 +65,9 @@ export default {
   methods: {
     signup() {
       axios
-        .post("", this.form)
+        .post("register/", this.form)
         .then(function(result) {
-          console.log("Success", result.response);
+          console.log("Success", result.data);
         })
         .catch(function(err) {
           console.log("Error", err);

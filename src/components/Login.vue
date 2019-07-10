@@ -59,10 +59,13 @@ export default {
     login: function() {
       axios
         .post("authenticate/", this.form)
-        .then(function(result) {
-          console.log("Success", result.data);
+        .then(resp => {
+          const token = resp.data.token
+          localStorage.setItem('user-token', token)
+          console.log("Success", resp.data);
         })
-        .catch(function(err) {
+        .catch(err => {
+          localStorage.removeItem('user-token')
           console.log("Error", err);
         });
     }
@@ -71,7 +74,4 @@ export default {
 </script>
 
 <style scoped>
-    .login {
-        
-    }
 </style>

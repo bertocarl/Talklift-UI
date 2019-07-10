@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/signup">Signup</router-link> |
+      <router-link to="/login">Login</router-link> 
+  </div>
+  <router-view/>
   </div>
 </template>
 
@@ -12,6 +17,18 @@ export default {
 
 <style>
 @import '~bootstrap/dist/css/bootstrap.min.css';
-#app {
-}
+    h3 {
+        margin: 40px 0 0;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+    a {
+        color: #42b983;
+    }
 </style>
