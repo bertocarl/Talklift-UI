@@ -1,6 +1,7 @@
-
 <template>
-    
+    <div class="new-bot">
+        New bot
+    </div>
 </template>
 
 <script>

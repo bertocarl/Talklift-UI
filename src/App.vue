@@ -1,35 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/business">Add Business</router-link> |
-  </div>
-  <router-view/>
+    <navbar v-if="show_navbar" />
+    <router-view/>
   </div>
 </template>
 
 <script>
+import store from './store';
+import Navbar from './components/NavBar';
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Navbar
+  },
+  data() {
+    return {
+      show_navbar: false
+    }
+  },
+  created() {
+    this.show_navbar = store.getters.getAccessToken;
+  }
 }
 </script>
 
 <style>
-@import '~bootstrap/dist/css/bootstrap.min.css';
-    h3 {
-        margin: 40px 0 0;
-    }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
-    a {
-        color: #42b983;
-    }
+
 </style>

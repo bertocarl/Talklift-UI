@@ -1,13 +1,40 @@
 <template>
   <div class="bot">
-    To list all the bot intents.
-    Show views based on bot availability
+    <div class="container">
+      <new-bot v-if="!bot" />
+      <bot-modules v-if="bot" :bot.sync="bot" />
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+import BotModules from './bots/BotModules';
+import NewBot from './bots/NewBot';
 
+export default {
+  components: {
+    BotModules,
+    NewBot 
+  },
+  data() {
+    return {
+      bot: null
+    }
+  },
+  created() {
+    // this.getBot();
+  },
+  methods: {
+    getBot() {
+      this.bot = {
+        modules: [
+          {id: 1, name: 'Greeting'},
+          {id: 2, name: 'Contacts'},
+          {id: 3, name: 'Ordering'},
+        ]
+      }
+    }
+  }
 }
 </script>
 
