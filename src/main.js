@@ -13,6 +13,7 @@ import AddBusiness from './components/AddBusiness'
 import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
 import NewResponse from './components/bots/NewResponse'
+import AddContacts from './components/contacts/AddContacts'
 
 // Global css files
 import 'bootstrap/dist/css/bootstrap.css'
@@ -31,7 +32,9 @@ const routes = [
 
   // Bot routes
   { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },
-  { path: '/module/:id/new-response', component: NewResponse, name: 'new_response' }
+  { path: '/module/:id/new-response', component: NewResponse, name: 'new_response' },
+  // Contacts routes
+  { path: '/contacts/', component: AddContacts, name: 'update_contacts'}
 ]
 
 const router = new VueRouter({ routes })
