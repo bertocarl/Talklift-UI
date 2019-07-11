@@ -60,9 +60,9 @@ export default {
       let self = this;
       axios
         .post("authenticate/", this.form)
-        .then(resp => {
+        .then(resp => {          
           store.commit('setAccessToken', resp.data.token);
-           self.$router.push({name:'index'});
+          self.$router.push({name:'index'});
         })
         .catch(err => {
           console.log("Error", err);
