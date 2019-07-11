@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-6">
-          <form action="javascript:;" @submit="updatecontacts">
+          <form action="javascript:;" @submit="getContacts">
             <div class="form-group">
               <label for="first name">First Name</label>
               <input 
@@ -61,7 +61,7 @@
 
 <script>
 import axios from "axios";
-import store from './../store';
+import store from './../../store';
 
 export default {
 data () {
@@ -80,10 +80,10 @@ created() {
 methods: {
   getContacts(){
     let self = this;
-    console.log(store)
     let config = {headers: {token: store.getters.getAccessToken}}
+    console.log(config)
     axios
-    .get("contacts/", config)
+    .post("contacts/", config, this.contacts)
     .then(resp => {
       if (resp.data) {
         if (resp.data.length > 0) {
@@ -95,18 +95,18 @@ methods: {
       console.log("Error", err);
     });
   },
-  updatecontacts(){
-    let self = this;
-    let config = {headers: {token: store.getters.getAccessToken}}
-    axios
-    .put("contacts/"+this.contacts.id+"/", this.contacts, config)
-    .then(resp => {
-      self.$router.push({first_name:'index'});
-    })
-    .catch(err => {
-      console.log("Error", err);
-    });
-  }
+//   updatecontacts(){
+//     let self = this;
+//     let config = {headers: {token: store.getters.getAccessToken}}
+//     axios
+//     .put("contacts/"+this.contacts.id+"/", this.contacts, config)
+//     .then(resp => {
+//       self.$router.push({first_name:'index'});
+//     })
+//     .catch(err => {
+//       console.log("Error", err);
+//     });
+//   }
 }
 };
 </script>
