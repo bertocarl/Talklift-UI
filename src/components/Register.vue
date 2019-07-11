@@ -1,7 +1,4 @@
 <template>
-
-
-
   <div class="register">
     <div class="container">
       <div class="row">
