@@ -13,11 +13,11 @@ import AddBusiness from './components/AddBusiness'
 import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
 import NewResponse from './components/bots/NewResponse'
-//import AddContacts from './components/contacts/AddContacts'
-=======
+import AddContacts from './components/contacts/AddContacts'
+
 import Profile from './components/Profile'
 import Contacts from './components/Contacts'
-//import AddContact from './components/AddContact'
+import AddContact from './components/AddContact'
 
 // Global css files
 import 'bootstrap/dist/css/bootstrap.css'
