@@ -66,7 +66,7 @@ import store from './../store';
 export default {
 data () {
   return {
-    business: {
+    contacts: {
       first_name: "",
       last_name: "",
       email: "",

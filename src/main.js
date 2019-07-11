@@ -34,7 +34,7 @@ const routes = [
   { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },
   { path: '/module/:id/new-response', component: NewResponse, name: 'new_response' },
   // Contacts routes
-  { path: '/contacts/', component: AddContacts, name: 'update_contacts'}
+  { path: '/contacts/', component: AddContacts, name: 'update_contacts'},
 ]
 
 const router = new VueRouter({ routes })
