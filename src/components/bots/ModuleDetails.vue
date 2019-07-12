@@ -12,7 +12,7 @@
 
         <!-- Action buttons -->
         <router-link class="floating-btn" :to="{name: 'new_response', params: {id: module.id}}" >
-            +
+            
         </router-link>
     </div>
 </template>
@@ -33,7 +33,7 @@ export default {
     },
     computed: {
         breadcrumbs() {
-            return [{text: 'module', href:'/#/'},{text: this.module.name, active: true}]
+            return [{text: 'module', href:'/#/'}, {text: this.module.name, active: true}]
         }
     }
     
