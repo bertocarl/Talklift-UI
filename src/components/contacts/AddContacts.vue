@@ -1,56 +1,72 @@
-
 <template>
-  <div class="add-contacts">
+  <div class="add_contact">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-lg-12 col-md-6">
-          <form action="javascript:;" @submit="updatecontacts">
+        <div class="col-md-6">
+          <form action="javascript:;" @submit="add_contact">
+            <h1>Add Contacts</h1>
             <div class="form-group">
-              <label for="first name">First Name</label>
-              <input 
-                name="first name"
-                type="text"
+              <label class="control-label">First Name</label>
+              <input
+                name="first_name"
                 class="form-control"
                 required
-                v-model="contacts.first_name"
-                placeholder="first name"
+                v-model="form.first_name"
+                type="text"
+                placeholder="First Name"
               />
             </div>
+
             <div class="form-group">
-              <label for="last name">Last Name</label>
-              <input 
-                name="last name"
-                type="text"
+              <label class="control-label">Last Name</label>
+              <input
+                name="last_name"
                 class="form-control"
                 required
-                v-model="contacts.last_name"
+                v-model="form.last_name"
+                type="text"
                 placeholder="Last Name"
               />
             </div>
+
             <div class="form-group">
-              <label for="email">Email</label>
-              <input 
-                name="email"
-                type="text"
+              <label class="control-label">Avatar</label>
+              <input
+                name="avatar"
                 class="form-control"
                 required
-                v-model="contacts.email"
+                v-model="form.avatar"
+                type="avatar"
+                placeholder="Avatar"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Email</label>
+              <input
+                name="email"
+                class="form-control"
+                required
+                v-model="form.email"
+                type="email"
                 placeholder="Email"
               />
             </div>
+
             <div class="form-group">
-              <label for="mebership_number">Membership Number</label>
+              <label class="control-label">Membership Number</label>
               <input
-                type="text"
+                name="membership_number"
                 class="form-control"
-                required 
-                name="membership_number" 
-                v-model="contacts.membership_number"
+                required
+                v-model="form.membership_number"
+                type="membership_number"
                 placeholder="Membership Number"
               />
             </div>
+
             <div class="actions">
-              <button type="submit" class="btn btn-primary">Update Contacts</button>
+              <button type="submit" class="btn btn-primary">Add Contact</button>
             </div>
           </form>
         </div>
@@ -60,56 +76,39 @@
 </template>
 
 <script>
-import axios from "axios";
-import store from './../store';
+import axios from "axios"
+import store from './../../store'
 
 export default {
-data () {
-  return {
-    contacts: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      membership_number: ""
-    }
-  };
-},
-created() {
-  this.getContacts();
-},
-methods: {
-  getContacts(){
-    let self = this;
-    console.log(store)
-    let config = {headers: {token: store.getters.getAccessToken}}
-    axios
-    .get("contacts/", config)
-    .then(resp => {
-      if (resp.data) {
-        if (resp.data.length > 0) {
-          self.contacts = resp.data[0];
-        }
+  data() {
+    return {
+      form: {
+        first_name: "",
+        last_name: "",
+        avatar: "",
+        email: "",
+        membership_number: ""
       }
-    })
-    .catch(err => {
-      console.log("Error", err);
-    });
+    };
   },
-  updatecontacts(){
-    let self = this;
-    let config = {headers: {token: store.getters.getAccessToken}}
-    axios
-    .put("contacts/"+this.contacts.id+"/", this.contacts, config)
-    .then(resp => {
-      self.$router.push({first_name:'index'});
-    })
-    .catch(err => {
-      console.log("Error", err);
-    });
+
+  methods: {
+    add_contact: function() {
+      let self = this;
+      let config = {headers: {token: store.getters.getAccessToken}}
+      axios
+        .post("contacts/", this.form, config)
+        .then(resp => {
+          store.commit('setAccessToken', resp.data.token);
+          self.$router.push({ name: "index" });
+        })
+        .catch(err => {
+          console.log("Error", err);
+        });
+    }
   }
-}
 };
 </script>
 
-<style>
+<style scoped>
 </style>

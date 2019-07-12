@@ -14,6 +14,7 @@ import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
 import NewResponse from './components/bots/NewResponse'
 import AddContacts from './components/contacts/AddContacts'
+import ContactsModule from './components/contacts/ContactsModule'
 
 // Global css files
 import 'bootstrap/dist/css/bootstrap.css'
@@ -34,7 +35,8 @@ const routes = [
   { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },
   { path: '/module/:id/new-response', component: NewResponse, name: 'new_response' },
   // Contacts routes
-  { path: '/contacts/', component: AddContacts, name: 'update_contacts'},
+  { path: '/add_contacts/', component: AddContacts, name: 'add_contacts'},
+  { path: '/get_contacts/', component: ContactsModule, name: 'get_contacts'}
 ]
 
 const router = new VueRouter({ routes })

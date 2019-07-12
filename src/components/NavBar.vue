@@ -19,7 +19,7 @@
                 <b-nav-item-dropdown v-b-popover.hover="'Contacts list and creations'">
                     <template slot="button-content"><em>Contacts </em></template>
                     <b-dropdown-item href="/#/get_contacts/">Get Contacts</b-dropdown-item>
-                    <b-dropdown-item href="/#/update_contacts/">Update Contacts</b-dropdown-item>
+                    <b-dropdown-item href="/#/add_contacts/">Update Contacts</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav><b-navbar-nav class="ml-auto" >
                     <b-nav-item-dropdown right>
