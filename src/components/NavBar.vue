@@ -7,7 +7,7 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                 <b-nav-item href="/#/get-started/">Get started</b-nav-item>
-                <b-navbar-nav class="ml-auto" v-b-popover.hover="'Chatbot configurations'">
+                <b-navbar-nav class="ml-auto">
                     <b-nav-item-dropdown left>
                     <template slot="button-content"><em>Chat Bot</em></template>
                     <b-dropdown-item href="/#/bot_modules/">Bot Modules</b-dropdown-item>
@@ -16,7 +16,7 @@
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
                 <b-nav-item href="/#/inbox/">Inbox</b-nav-item>
-                <b-nav-item-dropdown v-b-popover.hover="'Contacts list and creations'">
+                <b-nav-item-dropdown>
                     <template slot="button-content"><em>Contacts </em></template>
                     <b-dropdown-item href="/#/get_contacts/">Get Contacts</b-dropdown-item>
                     <b-dropdown-item href="/#/add_contacts/">Update Contacts</b-dropdown-item>
