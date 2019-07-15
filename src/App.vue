@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <navbar v-if="show_navbar" />
+    <div class="notification-bar">
+        <notifications group="default" position="top center" />
+    </div>
     <router-view/>
   </div>
 </template>
