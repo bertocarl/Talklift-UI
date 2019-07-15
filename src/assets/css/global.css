@@ -1,0 +1,21 @@
+.valign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: red;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/* Typography */
+html, body {
+    font-size: 1em;
+    font-weight: 400;
+    background: #fafafa;
+}
+
+h1 {
+    font-size: 27px;
+}
