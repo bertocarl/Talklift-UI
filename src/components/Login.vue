@@ -1,10 +1,10 @@
 <template>
-  <div class="login">
+  <div class="login valign">
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-4 offset-md-4">
           <form @submit="doLogin" action="javascript:;">
-            <h1>Sign in</h1>
+            <h1 class="text-center py-4">Sign in</h1>
             <div class="form-group">
               <label class="control-label">Email</label>
               <input
@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="actions">
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary btn-block">Login</button>
               <div class="my-2">
                 Don't have an account?
                 <router-link :to="{name: 'signup'}">Sign Up</router-link>
@@ -114,4 +114,7 @@ export default {
 </script>
 
 <style scoped>
+.login {
+  min-height: 100vh;
+}
 </style>

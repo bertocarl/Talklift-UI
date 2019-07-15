@@ -27,6 +27,7 @@ import Trigger from './components/bots/Triggers'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-loading-overlay/dist/vue-loading.css'
+import './assets/css/global.css'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
