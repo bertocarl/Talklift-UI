@@ -3,6 +3,9 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
+import Loading from 'vue-loading-overlay'
+import VeeValidate from 'vee-validate'
+import Notifications from 'vue-notification'
 
 import store from './store'
 import Login from './components/Login'
@@ -23,12 +26,43 @@ import Trigger from './components/bots/Triggers'
 // Global css files
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+Vue.use(Loading, {
+  color: '#000000',
+  loader: 'dots',
+  width: 64,
+  height: 64,
+  backgroundColor: '#ffffff',
+  opacity: 0.5,
+  zIndex: 999
+})
+Vue.use(VeeValidate, {
+  inject: true,
+  fieldsBagName: 'veeFields'
+})
+Vue.use(Notifications)
 
 axios.defaults.baseURL = 'https://api.talklift.com'
-axios.defaults.headers.common['token'] = store.getters.getAccessToken
+
+axios.interceptors.request.use(function (request) {
+  console.log('requests', request)
+  request.headers['token'] = store.getters.getAccessToken
+  return request
+}, function (error) {
+  return Promise.reject(error)
+})
+
+axios.interceptors.response.use(function (response) {
+  return response
+}, function (error) {
+  if (error.response.status === 403 || error.response.status === 401) {
+    router.push('/logout')
+  }
+  return Promise.reject(error)
+})
 
 const routes = [
   { path: '/', component: Bot, name: 'index' },

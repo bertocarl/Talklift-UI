@@ -1,6 +1,7 @@
 <template>
     <div class="module-details">
         <b-breadcrumb :items="breadcrumbs" />
+        
         <b-tabs>
             <b-tab title="Responses">
                 <responses :responses.sync="module.responses" />
@@ -43,11 +44,13 @@ export default {
 <style>
 .floating-btn {
     background: blue;
-    padding: 16px 27px;
-    border-radius: 50%;
     color: #fff;
     position: absolute;
     bottom: 21px;
     right: 21px;
+    padding: 34px;
+    height: 54px;
+    width: 54px;
+    border-radius: 50%;
 }
 </style>

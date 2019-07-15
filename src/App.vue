@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <navbar v-if="show_navbar" />
+    <div class="notification-bar">
+        <notifications group="default" position="top center" />
+    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-import store from './store';
 import Navbar from './components/NavBar';
 
 export default {
@@ -16,11 +18,13 @@ export default {
   },
   data() {
     return {
-      show_navbar: false
+      
     }
   },
-  created() {
-    this.show_navbar = store.getters.getAccessToken;
+  computed: {
+    show_navbar() {
+      return this.$store.getters.getAccessToken;
+    }
   }
 }
 </script>
