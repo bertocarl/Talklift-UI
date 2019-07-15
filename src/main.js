@@ -18,6 +18,7 @@ import Profile from './components/Profile'
 import Contacts from './components/Contacts'
 import AddContact from './components/AddContact'
 import NewModule from './components/bots/NewModule'
+import Trigger from './components/bots/Triggers'
 
 // Global css files
 import 'bootstrap/dist/css/bootstrap.css'
@@ -39,6 +40,7 @@ const routes = [
   { path: '/contacts/', component: Contacts, name: 'contacts' },
   { path: '/addcontact/', component: AddContact, name: 'add_contact' },
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
+  { path: 'triggers/', component: Trigger, name: 'triggers_list' },
 
   // Bot routes
   { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },

@@ -9,7 +9,7 @@
           <div class="card-body">
             <h5>{{module.name}}</h5>
 
-            <button class="btn btn-info btn-block" v-on:click="editModules(task)">Edit</button>
+            <button class="btn btn-primary btn-xs " v-on:click="getModules(modules)">Edit Module</button>
           
           </div>
         </router-link>
