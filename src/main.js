@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 
+import store from './store'
 import Login from './components/Login'
 import Logout from './components/Logout'
 
@@ -26,6 +27,8 @@ Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 
 axios.defaults.baseURL = 'https://api.talklift.com'
+axios.defaults.headers.common['token'] = store.getters.getAccessToken
+
 const routes = [
   { path: '/', component: Bot, name: 'index' },
   { path: '/login', component: Login, name: 'login' },
@@ -47,5 +50,6 @@ const router = new VueRouter({ routes })
 Vue.config.productionTip = false
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

@@ -1,34 +1,22 @@
 <template>
   <div class="triggers">
-
-    {{triggers}}
     
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-3">
-          <form @submit="trigger" action="javascript:;">
+          <form @submit="submitForm" action="javascript:;">
             <div class="form-group">
               <label class="control-label">Trigger</label>
               <input
-                name="trigger_field"
+                name="text"
                 class="form-control"
                 required
-                v-model="form.trigger_field"
+                v-model="form.text"
                 placeholder="Enter a trigger"
               />
             </div>
-            <div class="form-group">
-              <label class="control-label">Module</label>
-              <input
-                name="module_id"
-                class="form-control"
-                required
-                v-model="form.module_id"
-                placeholder="Enter a module"
-              />
-            </div>
             <div class="actions">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Create A Trigger</button>
             </div>
           </form>
         </div>
@@ -39,7 +27,6 @@
 
 <script>
 import axios from "axios"
-import store from './../../store'
 
 export default {
 
@@ -49,23 +36,27 @@ export default {
       type: Array
     }
   },
+  computed: {
+    module_id() {
+      return this.$route.params.id
+    }
+  },
   data() {
     return {
       form: {
-        trigger_field: "",
-        module_id: ""
+        text: ""
       }
     };
   },
 
   methods: {
-    trigger: function() {
+    submitForm: function() {
       let self = this;
-      let config = {headers: {token: store.getters.getAccessToken}};
+      let payload = this.form;
+      payload['module_id'] = this.module_id
       axios
-        .post("triggers/", this.form, config)
+        .post("triggers/", payload)
         .then(resp => {
-          store.commit('setAccessToken', resp.data.token);
           self.$router.push({ name: "index" });
         })
         .catch(err => {
