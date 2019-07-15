@@ -43,7 +43,7 @@
 
 <script>
 import axios from "axios";
-import store from './../store';
+import { Promise } from 'q';
 
 export default {
   data() {
@@ -54,22 +54,43 @@ export default {
       }
     };
   },
-
   methods: {
     login: function() {
       let self = this;
-      axios
-        .post("authenticate/", this.form)
-        .then(resp => {          
-          store.commit('setAccessToken', resp.data.token);
-          self.$router.push({name:'index'});
+      const performLogin  = function(form) {
+        return new Promise(function(resolve, reject) {
+          axios
+            .post("authenticate/", form)
+            .then(resp => {          
+              resolve(resp)
+            })
+            .catch(err => {
+              reject(err)
+            });
         })
-        .catch(err => {
-          console.log("Error", err);
-        });
+      }
+
+      const setToken = function() {
+        return new Promise(function(resolve, reject){
+          performLogin(self.form).then(function(resp){
+            self.$store.commit('setAccessToken', resp.data.token);
+            resolve()
+          }).catch(function(err){
+            console.log('Set token error', err)
+            reject(err)
+          }) 
+        })
+      }
+
+      // Redirect after setting token
+      setToken().then(function(){
+        self.$router.push({name:'index'});
+      }).catch(function(err){
+        console.log('redirect erorr', err)
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -27,7 +27,23 @@ Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 
 axios.defaults.baseURL = 'https://api.talklift.com'
-axios.defaults.headers.common['token'] = store.getters.getAccessToken
+
+axios.interceptors.request.use(function (request) {
+  console.log('requests', request)
+  request.headers['token'] = store.getters.getAccessToken
+  return request
+}, function (error) {
+  return Promise.reject(error)
+})
+
+axios.interceptors.response.use(function (response) {
+  return response
+}, function (error) {
+  if (error.response.status === 403 || error.response.status === 401) {
+    router.push('/logout')
+  }
+  return Promise.reject(error)
+})
 
 const routes = [
   { path: '/', component: Bot, name: 'index' },

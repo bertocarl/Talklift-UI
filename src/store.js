@@ -4,20 +4,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    access_token: localStorage.getItem('tl_access_token'),
+    access_token: null,
     currentUser: {}
   },
   getters: {
     getAccessToken (state) {
+      if (!state.access_token) {
+        state.access_token = localStorage.getItem('tl_access_token')
+        console.log('state.access_token', state.access_token)
+      }
       return state.access_token
     }
   },
   mutations: {
     setAccessToken (state, token) {
-      state.access_token = localStorage.setItem('tl_access_token', token)
+      localStorage.setItem('tl_access_token', token)
+      state.access_token = token
     },
     removeAccessToken (state) {
-      state.access_token = localStorage.removeItem('tl_access_token')
+      localStorage.removeItem('tl_access_token')
     }
   },
   actions: {
