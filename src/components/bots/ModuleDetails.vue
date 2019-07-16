@@ -3,8 +3,11 @@
     <sub-nav :title="'Manage '+module.name" />
     <div class="my-4">
       <div class="container">
-        <responses />
-        <triggers />
+        <router-link :to="{name: 'triggers_list', params: {id: module_id}}">Triggers</router-link>
+        <br />
+        <router-link :to="{name: 'responses_list', params: {id: module_id}}">Responses</router-link>
+
+        <router-view/>
       </div>
     </div>
   </div>
@@ -14,21 +17,19 @@
 
 
 import SubNav from './../SubNav';
-import Responses from "./Responses";
-import Triggers from "./Triggers";
 
 export default {
   components: {
-    SubNav,
-    Responses,
-    Triggers
+    SubNav
+  },
+  computed: {
+    module_id() {
+      return this.$route.params.id;
+    }
   },
   data() {
     return {
-      module: {
-        triggers: [],
-        responses: []
-      }
+      module: {}
     };
   }
 };
