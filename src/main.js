@@ -77,13 +77,14 @@ const routes = [
   { path: '/contacts/', component: Contacts, name: 'contacts' },
   { path: '/addcontact/', component: AddContact, name: 'add_contact' },
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
-  { path: 'triggers/', component: Trigger, name: 'triggers_list' },
-  { path: 'responses/', component: Responses, name: 'responses_list' },
-  { path: 'editresponse/', component: EditResponse, name: 'edit_response' },
 
   // Bot routes
-  { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },
-  { path: '/module/:id/new-response', component: NewResponse, name: 'new_response' }
+  { path: '/module/:id/', component: ModuleDetails, name: 'module_details', children: [
+      { path: 'new-response', component: NewResponse, name: 'new_response' },
+      { path: 'triggers/', component: Trigger, name: 'triggers_list' },
+      { path: 'responses/', component: Responses, name: 'responses_list' },
+      { path: 'edit-response/:response_id', component: EditResponse, name: 'edit_response' },
+  ] },
 ]
 
 const router = new VueRouter({ routes })
