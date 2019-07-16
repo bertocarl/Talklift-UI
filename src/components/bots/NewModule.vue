@@ -18,7 +18,7 @@
                 />
               </div>
               <div class="actions">
-                <button type="submit" class="btn btn-primary btn-block">Create Module</button>
+                <button type="submit" class="btn btn-primary btn-block">Create module</button>
               </div>
             </form>
           </div>

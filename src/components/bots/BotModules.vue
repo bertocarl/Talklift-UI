@@ -58,5 +58,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+  .card {
+    min-height: 89px;
+  }
+  h5 {
+    font-size: 1.1em;
+  }
 </style>
