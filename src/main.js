@@ -27,6 +27,7 @@ import EditResponse from './components/bots/EditResponse'
 
 import Inbox from './components/inbox/Inbox'
 import InboxContacts from './components/inbox/InboxContacts'
+import Messages from './components/inbox/Messages'
 
 import AddContact from './components/contacts/AddContact'
 import Contacts from './components/contacts/Contacts'
@@ -85,7 +86,8 @@ const routes = [
   { path: '/inbox/',
     component: Inbox,
     children: [
-      { path: '/', component: InboxContacts, name: 'inbox_contacts' }
+      { path: '', component: InboxContacts, name: 'inbox_contacts' },
+      { path: 'messages/:contact_id', component: Messages, name: 'messages' }
     ]
   },
   // Bot routes
