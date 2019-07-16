@@ -15,6 +15,7 @@
             
             <router-link :to="{name: 'responses_list'}">Back to Responses</router-link>
             
+
           </b-card>
 
 
@@ -30,7 +31,13 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      responses: []
+      responses: [],
+      edit_response: {
+          content: {
+            text: "",
+            quick_replies: ""
+        }
+      }
     };
   },
 
@@ -39,7 +46,9 @@ export default {
   },
 
   methods: {
+    
     get_response: function() {
+      let self = this;
       axios
         .get("responses/")
         .then(resp => {
@@ -49,6 +58,18 @@ export default {
         .catch(err => {
           console.log("Error", err);
         });
+    },
+
+    edit_response: function() {
+        let self = this;
+        axios
+        .put("responses/" + this.edit_response.id + "/", this.edit_response )
+        .then(resp => {
+            self.$router.push( { name: "response_details" })
+        })
+        .catch(err => {
+            console.log("Error", err)
+        })
     }
   }
 };
