@@ -82,11 +82,9 @@ export default {
   methods: {
     add_contact: function() {
       let self = this;
-      let loader = self.$loading.show();
       axios
-        .post("contacts/", this.form, config)
+        .post("contacts/", this.form)
         .then(resp => {
-          store.commit("setAccessToken", resp.data.token);
           self.$router.push({ name: "index" });
           loader.hide();
         })
