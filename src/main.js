@@ -22,6 +22,7 @@ import Contacts from './components/Contacts'
 import AddContact from './components/AddContact'
 import NewModule from './components/bots/NewModule'
 import Inbox from './components/Inbox'
+// import InboxTry from './components/InboxTry'
 
 // Global css files
 import 'bootstrap/dist/css/bootstrap.css'
@@ -76,6 +77,7 @@ const routes = [
   { path: '/addcontact/', component: AddContact, name: 'add_contact' },
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
   { path: '/inbox/', component: Inbox, name: 'inbox' },
+  // { path: '/inboxtry/', component: InboxTry, name: 'inboxtry' },
 
   // Bot routes
   { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },
