@@ -65,7 +65,6 @@
 
 <script>
 import axios from "axios";
-import store from "./../store";
 
 export default {
   data() {
@@ -86,7 +85,6 @@ export default {
       axios
         .post("contacts/", this.form, config)
         .then(resp => {
-          store.commit("setAccessToken", resp.data.token);
           self.$router.push({ name: "index" });
           loader.hide();
         })
