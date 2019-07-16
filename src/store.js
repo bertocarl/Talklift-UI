@@ -22,6 +22,7 @@ export default new Vuex.Store({
     },
     removeAccessToken (state) {
       localStorage.removeItem('tl_access_token')
+      state.access_token = null
     }
   },
   actions: {
