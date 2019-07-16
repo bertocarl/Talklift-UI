@@ -64,8 +64,8 @@
 </template>
 
 <script>
-import axios from "axios"
-import store from './../store'
+import axios from "axios";
+import store from "./../store";
 
 export default {
   data() {
@@ -82,15 +82,17 @@ export default {
   methods: {
     add_contact: function() {
       let self = this;
-      let config = {headers: {token: store.getters.getAccessToken}}
+      let loader = self.$loading.show();
       axios
         .post("contacts/", this.form, config)
         .then(resp => {
-          store.commit('setAccessToken', resp.data.token);
+          store.commit("setAccessToken", resp.data.token);
           self.$router.push({ name: "index" });
+          loader.hide();
         })
         .catch(err => {
           console.log("Error", err);
+          loader.hide();
         });
     }
   }

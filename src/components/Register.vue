@@ -45,7 +45,7 @@
 
 <script>
 import axios from "axios";
-import store from './../store';
+import store from "./../store";
 
 export default {
   name: "Signup",
@@ -60,20 +60,21 @@ export default {
   methods: {
     signup() {
       let self = this;
+      let loader = self.$loading.show();
       axios
         .post("register/", this.form)
         .then(function(resp) {
-          store.commit('setAccessToken', resp.data.token);
-          self.$router.push({name: 'update_business'});
+          store.commit("setAccessToken", resp.data.token);
+          self.$router.push({ name: "update_business" });
+          loader.hide();
         })
         .catch(function(err) {
+          loader.hide();
           console.log("Error", err);
         });
     }
   }
 };
-
-
 </script>
 
 <style scoped>

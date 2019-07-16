@@ -39,13 +39,16 @@ export default {
   methods: {
     create_module: function() {
       let self = this;
+      let loader = self.$loading.show();
       axios
         .post("modules/", this.form)
         .then(resp => {
           self.$router.push({ name: "index" });
+          loader.hide()
         })
         .catch(err => {
           console.log("Error", err);
+          loader.hide()
         });
     }
   }
