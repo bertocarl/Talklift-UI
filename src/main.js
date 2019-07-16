@@ -17,6 +17,7 @@ import AddBusiness from './components/AddBusiness'
 import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
 import NewResponse from './components/bots/NewResponse'
+
 import Profile from './components/Profile'
 import Contacts from './components/Contacts'
 import AddContact from './components/AddContact'
@@ -28,6 +29,9 @@ import EditResponse from './components/bots/EditResponse'
 
 import Inbox from './components/inbox/Inbox'
 import InboxContacts from './components/inbox/InboxContacts'
+
+import AddContacts from './components/contacts/AddContacts'
+import ContactsModule from './components/contacts/ContactsModule'
 
 // Global css files
 import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -82,8 +86,11 @@ const routes = [
   { path: '/contacts/', component: Contacts, name: 'contacts' },
   { path: '/addcontact/', component: AddContact, name: 'add_contact' },
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
-  { path: '/inbox/', component: Inbox, name: 'inbox', children: [
-    {path: '/', component: InboxContacts, name: 'inbox_contacts'}
+  { path: '/inbox/',
+component: Inbox,
+name: 'inbox',
+children: [
+    { path: '/', component: InboxContacts, name: 'inbox_contacts' }
   ] },
 
   // Bot routes
@@ -96,7 +103,10 @@ const routes = [
       { path: 'responses/', component: Responses, name: 'responses_list' },
       { path: 'edit-response/:response_id', component: EditResponse, name: 'edit_response' }
     ]
-  }
+  },
+  // Contacts routes
+  { path: '/add_contacts/', component: AddContacts, name: 'add_contacts' },
+  { path: '/get_contacts/', component: ContactsModule, name: 'get_contacts' }
 ]
 
 const router = new VueRouter({ routes })

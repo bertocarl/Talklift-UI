@@ -16,7 +16,8 @@ import Navbar from './components/NavBar';
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar,
+    
   },
   data() {
     return {
