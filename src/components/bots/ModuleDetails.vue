@@ -1,6 +1,7 @@
 <template>
     <div class="module-details">
         <b-breadcrumb :items="breadcrumbs" />
+        
         <b-tabs>
             <b-tab title="Responses">
                 <responses :responses.sync="module.responses" />
@@ -12,7 +13,7 @@
 
         <!-- Action buttons -->
         <router-link class="floating-btn" :to="{name: 'new_response', params: {id: module.id}}" >
-            +
+            
         </router-link>
     </div>
 </template>
@@ -33,7 +34,7 @@ export default {
     },
     computed: {
         breadcrumbs() {
-            return [{text: 'module', href:'/#/'},{text: this.module.name, active: true}]
+            return [{text: 'module', href:'/#/'}, {text: this.module.name, active: true}]
         }
     }
     
@@ -43,11 +44,13 @@ export default {
 <style>
 .floating-btn {
     background: blue;
-    padding: 16px 27px;
-    border-radius: 50%;
     color: #fff;
     position: absolute;
     bottom: 21px;
     right: 21px;
+    padding: 34px;
+    height: 54px;
+    width: 54px;
+    border-radius: 50%;
 }
 </style>

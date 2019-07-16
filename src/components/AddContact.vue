@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <form @submit="add_contact" action="javascript:;">
+          <form action="javascript:;" @submit="add_contact">
             <h1>Add Contacts</h1>
             <div class="form-group">
               <label class="control-label">First Name</label>
@@ -64,8 +64,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import store from './../store';
+import axios from "axios"
+import store from './../store'
 
 export default {
   data() {
@@ -82,12 +82,12 @@ export default {
   methods: {
     add_contact: function() {
       let self = this;
+      let config = {headers: {token: store.getters.getAccessToken}}
       axios
-        .post("contacts/", this.form)
+        .post("contacts/", this.form, config)
         .then(resp => {
-          console.log("Success !!!")
           store.commit('setAccessToken', resp.data.token);
-          self.$router.push({ name: "contacts" });
+          self.$router.push({ name: "index" });
         })
         .catch(err => {
           console.log("Error", err);

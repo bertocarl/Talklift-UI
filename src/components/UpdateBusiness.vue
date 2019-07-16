@@ -56,7 +56,6 @@ created() {
 methods: {
   getBusiness(){
     let self = this;
-    console.log(store)
     let config = {headers: {token: store.getters.getAccessToken}}
     axios
     .get("businesses/", config)

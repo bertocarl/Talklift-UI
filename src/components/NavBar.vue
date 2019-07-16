@@ -23,11 +23,11 @@
                     </b-nav-item-dropdown>
                 </b-navbar-nav><b-navbar-nav class="ml-auto" >
                     <b-nav-item-dropdown right>
-                    <template slot="button-content"><em>Account</em></template>
-                    <b-dropdown-item href="/#/profile/">Profile</b-dropdown-item>
-                    <b-dropdown-item href="/#/settings/">Settings</b-dropdown-item>
-                    <b-dropdown-item href="/#/billing/">Billing</b-dropdown-item>
-                    <b-dropdown-item href="/#/logout/">Log Out</b-dropdown-item>
+                        <template slot="button-content">Account</template>
+                        <b-dropdown-item href="/#/profile/">Profile</b-dropdown-item>
+                        <b-dropdown-item href="/#/settings/">Settings</b-dropdown-item>
+                        <b-dropdown-item href="/#/billing/">Billing</b-dropdown-item>
+                        <b-dropdown-item href="/#/logout/">Log Out</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
