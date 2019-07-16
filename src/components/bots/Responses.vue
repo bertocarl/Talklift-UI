@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-md-6 col-md-3" v-for="response in responses" :key="response.id">
-          <router-link :to="{name: 'edit_response'}">
+          <router-link :to="{name: 'edit_response' }">
           <div class="card">
             <div class="card-body">
               <h4>{{response.content.text}}</h4>
@@ -110,7 +110,6 @@ export default {
         .get("responses/")
         .then(resp => {
           this.responses = resp.data;
-          console.log("responses present");
         })
         .catch(err => {
           console.log("Error", err);

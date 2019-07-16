@@ -76,7 +76,7 @@ export default {
       let self = this;
       let loader = self.$loading.show();
       axios
-        .put("businesses/" + this.business.id + "/", this.business, config)
+        .put("businesses/" + this.business.id + "/", this.business )
         .then(resp => {
           self.$router.push({ name: "index" });
           loader.hide();
