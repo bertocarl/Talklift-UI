@@ -6,9 +6,9 @@
                     <h1>{{title}}</h1>
                 </div>
                 <div class="col-12 col-md-6 text-right">
-                    <ul class="list-inline">
+                    <ul class="list-inline" v-if="actions">
                         <li class="list-inline-item" v-for="action in actions" :key="action.href">
-                            <a :href="action.href" :class="'btn btn-sm btn-'+action.type">
+                            <a :href="action.href" :class="'btn btn-sm btn-'+action.type" v-if="action">
                                 {{action.label}}
                             </a>
                         </li>
@@ -38,6 +38,7 @@ export default {
     .subnav {
         background: #dfdfdf;
         margin-top: 55px;
+        min-height: 57px;
     }
     h1 {
         font-size: 1.4em;
