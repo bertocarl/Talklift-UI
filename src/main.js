@@ -17,14 +17,23 @@ import AddBusiness from './components/AddBusiness'
 import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
 import NewResponse from './components/bots/NewResponse'
+
 import Profile from './components/Profile'
-import Contacts from './components/Contacts'
-import AddContact from './components/AddContact'
+
 import NewModule from './components/bots/NewModule'
-import Inbox from './components/Inbox'
-// import InboxTry from './components/InboxTry'
+import Trigger from './components/bots/Triggers'
+import Responses from './components/bots/Responses'
+import EditResponse from './components/bots/EditResponse'
+
+import Inbox from './components/inbox/Inbox'
+import InboxContacts from './components/inbox/InboxContacts'
+import Messages from './components/inbox/Messages'
+
+import AddContact from './components/contacts/AddContact'
+import Contacts from './components/contacts/Contacts'
 
 // Global css files
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-loading-overlay/dist/vue-loading.css'
@@ -50,7 +59,6 @@ Vue.use(Notifications)
 axios.defaults.baseURL = 'https://api.talklift.com'
 
 axios.interceptors.request.use(function (request) {
-  console.log('requests', request)
   request.headers['token'] = store.getters.getAccessToken
   return request
 }, function (error) {
@@ -73,15 +81,29 @@ const routes = [
   { path: '/signup/', component: Register, name: 'signup' },
   { path: '/business/', component: AddBusiness, name: 'update_business' },
   { path: '/profile/', component: Profile, name: 'profile' },
-  { path: '/contacts/', component: Contacts, name: 'contacts' },
-  { path: '/addcontact/', component: AddContact, name: 'add_contact' },
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
-  { path: '/inbox/', component: Inbox, name: 'inbox' },
-  // { path: '/inboxtry/', component: InboxTry, name: 'inboxtry' },
-
+  // Inbox routes
+  { path: '/inbox/',
+    component: Inbox,
+    children: [
+      { path: '', component: InboxContacts, name: 'inbox_contacts' },
+      { path: 'messages/:contact_id', component: Messages, name: 'messages' }
+    ]
+  },
   // Bot routes
-  { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },
-  { path: '/module/:id/new-response', component: NewResponse, name: 'new_response' }
+  { path: '/module/:id/',
+    component: ModuleDetails,
+    name: 'module_details',
+    children: [
+      { path: 'new-response', component: NewResponse, name: 'new_response' },
+      { path: 'triggers/', component: Trigger, name: 'triggers_list' },
+      { path: 'responses/', component: Responses, name: 'responses_list' },
+      { path: 'edit-response/:response_id', component: EditResponse, name: 'edit_response' }
+    ]
+  },
+  // Contacts routes
+  { path: '/new-contact/', component: AddContact, name: 'new_contact' },
+  { path: '/contacts/', component: Contacts, name: 'contacts' }
 ]
 
 const router = new VueRouter({ routes })

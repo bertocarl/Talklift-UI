@@ -1,56 +1,40 @@
 <template>
-    <div class="module-details">
-        <b-breadcrumb :items="breadcrumbs" />
-        
-        <b-tabs>
-            <b-tab title="Responses">
-                <responses :responses.sync="module.responses" />
-            </b-tab>
-            <b-tab title="Triggers">
-                <triggers :triggers.sync="module.triggers" />
-            </b-tab>
-        </b-tabs>
+  <div class="module-details">
+    <sub-nav :title="'Manage '+module.name" />
+    <div class="my-4">
+      <div class="container">
+        <router-link :to="{name: 'triggers_list', params: {id: module_id}}">Triggers</router-link>
+        <br />
+        <router-link :to="{name: 'responses_list', params: {id: module_id}}">Responses</router-link>
 
-        <!-- Action buttons -->
-        <router-link class="floating-btn" :to="{name: 'new_response', params: {id: module.id}}" >
-            
-        </router-link>
+        <router-view/>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import Responses from './Responses';
-import Triggers from './Triggers';
+
+
+import SubNav from './../SubNav';
 
 export default {
-    components: {
-        Responses,
-        Triggers
-    },
-    data() {
-        return {
-            module: {id: 1, name: 'Ordering', triggers: [], responses: [{id: 1, message: 'Response 1', id: 2, message: 'Response 2'}]}
-        }
-    },
-    computed: {
-        breadcrumbs() {
-            return [{text: 'module', href:'/#/'}, {text: this.module.name, active: true}]
-        }
+  components: {
+    SubNav
+  },
+  computed: {
+    module_id() {
+      return this.$route.params.id;
     }
-    
-}
+  },
+  data() {
+    return {
+      module: {}
+    };
+  }
+};
 </script>
 
 <style>
-.floating-btn {
-    background: blue;
-    color: #fff;
-    position: absolute;
-    bottom: 21px;
-    right: 21px;
-    padding: 34px;
-    height: 54px;
-    width: 54px;
-    border-radius: 50%;
-}
+
 </style>

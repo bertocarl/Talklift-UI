@@ -4,10 +4,10 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-6">
-          <form @submit="updatebusiness" action="javascript:;" >
+          <form @submit="updatebusiness" action="javascript:;">
             <div class="form-group">
               <label for="name">Name</label>
-              <input 
+              <input
                 name="name"
                 type="text"
                 class="form-control"
@@ -21,8 +21,8 @@
               <input
                 type="text"
                 class="form-control"
-                required 
-                name="contact_phone_number" 
+                required
+                name="contact_phone_number"
                 v-model="business.contact_phone_number"
                 placeholder="Phone Number"
               />
@@ -39,48 +39,52 @@
 
 <script>
 import axios from "axios";
-import store from './../store';
+import store from "./../store";
 
 export default {
-data () {
-  return {
-    business: {
-      name: "",
-      contact_phone_number: ""
-    }
-  };
-},
-created() {
-  this.getBusiness();
-},
-methods: {
-  getBusiness(){
-    let self = this;
-    let config = {headers: {token: store.getters.getAccessToken}}
-    axios
-    .get("businesses/", config)
-    .then(resp => {
-      if (resp.data) {
-        if (resp.data.length > 0) {
-          self.business = resp.data[0];
-        }
+  data() {
+    return {
+      business: {
+        name: "",
+        contact_phone_number: ""
       }
-    })
-    .catch(err => {
-      console.log("Error", err);
-    });
+    };
   },
-    updatebusiness(){
+  created() {
+    this.getBusiness();
+  },
+  methods: {
+    getBusiness() {
       let self = this;
-      let config = {headers: {token: store.getters.getAccessToken}}
+      let loading = self.$loading.show();
       axios
-      .put("businesses/"+this.business.id+"/", this.business, config)
-      .then(resp => {
-        self.$router.push({name:'index'});
-      })
-      .catch(err => {
-        console.log("Error", err);
-      });
+        .get("businesses/", config)
+        .then(resp => {
+          if (resp.data) {
+            if (resp.data.length > 0) {
+              self.business = resp.data[0];
+              loader.hide();
+            }
+          }
+        })
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+        });
+    },
+    updatebusiness() {
+      let self = this;
+      let loader = self.$loading.show();
+      axios
+        .put("businesses/" + this.business.id + "/", this.business )
+        .then(resp => {
+          self.$router.push({ name: "index" });
+          loader.hide();
+        })
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+        });
     }
   }
 };

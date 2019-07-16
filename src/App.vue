@@ -4,7 +4,9 @@
     <div class="notification-bar">
         <notifications group="default" position="top center" />
     </div>
-    <router-view/>
+    <div class="content">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -14,7 +16,8 @@ import Navbar from './components/NavBar';
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar,
+    
   },
   data() {
     return {
@@ -29,6 +32,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .content {
+    
+  }
 </style>

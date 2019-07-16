@@ -11,7 +11,6 @@ export default new Vuex.Store({
     getAccessToken (state) {
       if (!state.access_token) {
         state.access_token = localStorage.getItem('tl_access_token')
-        console.log('state.access_token', state.access_token)
       }
       return state.access_token
     }
@@ -23,6 +22,7 @@ export default new Vuex.Store({
     },
     removeAccessToken (state) {
       localStorage.removeItem('tl_access_token')
+      state.access_token = null
     }
   },
   actions: {
