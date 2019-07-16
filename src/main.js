@@ -20,11 +20,14 @@ import NewResponse from './components/bots/NewResponse'
 import Profile from './components/Profile'
 import Contacts from './components/Contacts'
 import AddContact from './components/AddContact'
+
 import NewModule from './components/bots/NewModule'
 import Trigger from './components/bots/Triggers'
 import Responses from './components/bots/Responses'
 import EditResponse from './components/bots/EditResponse'
-import Inbox from './components/Inbox'
+
+import Inbox from './components/inbox/Inbox'
+import InboxContacts from './components/inbox/InboxContacts'
 
 // Global css files
 import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -79,7 +82,9 @@ const routes = [
   { path: '/contacts/', component: Contacts, name: 'contacts' },
   { path: '/addcontact/', component: AddContact, name: 'add_contact' },
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
-  { path: '/inbox/', component: Inbox, name: 'inbox' },
+  { path: '/inbox/', component: Inbox, name: 'inbox', children: [
+    {path: '/', component: InboxContacts, name: 'inbox_contacts'}
+  ] },
 
   // Bot routes
   { path: '/module/:id/',
