@@ -41,13 +41,13 @@
         </div>
 
         <div class="col-md-6 col-md-3" v-for="response in responses" :key="response.id">
-          <router-link :to="{name: 'edit_response' }">
-          <div class="card">
-            <div class="card-body">
-              <h4>{{response.content.text}}</h4>
-              <h6>{{response.content.quick_replies}}</h6>
+          <router-link :to="{name: 'edit_response', params: {response_id: response.id, id: module_id} }">
+            <div class="card">
+              <div class="card-body">
+                <h4>{{response.content.text}}</h4>
+                <h6>{{response.content.quick_replies}}</h6>
+              </div>
             </div>
-          </div>
           </router-link>
         </div>
       </div>
@@ -107,7 +107,7 @@ export default {
     getResponses: function() {
       let self = this;
       axios
-        .get("responses/")
+        .get("responses/", {params: {module_id: this.module_id}})
         .then(resp => {
           this.responses = resp.data;
         })

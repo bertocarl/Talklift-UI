@@ -44,7 +44,11 @@ export default {
   created() {
     this.get_response();
   },
-
+  computed: {
+    response_id() {
+      return this.$$router.params.response_id
+    }
+  },
   methods: {
     
     get_response: function() {
@@ -63,7 +67,7 @@ export default {
     edit_response: function() {
         let self = this;
         axios
-        .put("responses/" + this.edit_response.id + "/", this.edit_response )
+        .put("responses/" + this.response_id + "/", this.edit_response )
         .then(resp => {
             self.$router.push( { name: "response_details" })
         })
