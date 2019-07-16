@@ -13,8 +13,11 @@ export default {
             contacts: []
         }
     },
+    created() {
+        this.getContacts();
+    },
     methods: {
-        getModules() {
+        getContacts() {
             let self = this;
             let loader = self.$loading.show();
             axios
