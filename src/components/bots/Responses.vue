@@ -6,6 +6,7 @@
         <div class="col-md-6 col-md-3">
 
           <form @submit="submitForm" action="javascript:;">
+            
             <div class="form-group">
               <label class="control-label">Text Content</label>
               <input

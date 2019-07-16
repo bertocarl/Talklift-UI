@@ -24,7 +24,8 @@
         </div>
 
         <div class="col-md-6 col-md-3 my-2" v-for="trigger in triggers" :key="trigger.id">
-          <router-link :to="{name: 'edit_triggers', params: { id: trigger.id }}">
+          <router-link
+           :to="{name: 'edit_trigger', params: {trigger_id: trigger.id, id: module_id }}">
           <div class="card">
             <div class="card-body">
               <h5>{{trigger.text}}</h5>
