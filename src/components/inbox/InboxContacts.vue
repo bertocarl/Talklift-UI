@@ -31,8 +31,7 @@ export default {
         getContacts() {
             let self = this;
             let loader = self.$loading.show();
-            axios
-                .get("contacts/")
+            axios.get("contacts/")
                 .then(resp => {
                     self.contacts = resp.data;
                     loader.hide();
@@ -40,6 +39,12 @@ export default {
                 .catch(err => {
                     console.log("Error", err);
                     loader.hide();
+                    self.$notify({
+                        group: "default",
+                        type: "error",
+                        title: err,
+                        text: err.response.data
+                    });
                 });
         }
     }
