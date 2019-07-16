@@ -1,8 +1,6 @@
 <template>
   <div class="bot">
-    <div class="container">
-      <bot-modules />
-    </div>
+    <bot-modules />
   </div>
 </template>
 

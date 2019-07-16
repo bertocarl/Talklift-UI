@@ -4,7 +4,9 @@
     <div class="notification-bar">
         <notifications group="default" position="top center" />
     </div>
-    <router-view/>
+    <div class="content">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -29,6 +31,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .content {
+    
+  }
 </style>
