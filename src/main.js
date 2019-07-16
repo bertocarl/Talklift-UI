@@ -24,6 +24,7 @@ import NewModule from './components/bots/NewModule'
 import Trigger from './components/bots/Triggers'
 import Responses from './components/bots/Responses'
 import EditResponse from './components/bots/EditResponse'
+import EditTriggers from './components/bots/EditTriggers'
 
 // Global css files
 import 'bootstrap/dist/css/bootstrap.css'
@@ -79,12 +80,18 @@ const routes = [
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
 
   // Bot routes
-  { path: '/module/:id/', component: ModuleDetails, name: 'module_details', children: [
+  {
+    path: '/module/:id/',
+    component: ModuleDetails,
+    name: 'module_details',
+    children: [
       { path: 'new-response', component: NewResponse, name: 'new_response' },
       { path: 'triggers/', component: Trigger, name: 'triggers_list' },
       { path: 'responses/', component: Responses, name: 'responses_list' },
       { path: 'edit-response/:response_id', component: EditResponse, name: 'edit_response' },
-  ] },
+      { path: 'edit-trigger/:trigger_id', component: EditTriggers, name: 'edit_trigger' }
+    ]
+  }
 ]
 
 const router = new VueRouter({ routes })
