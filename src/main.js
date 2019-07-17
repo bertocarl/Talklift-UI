@@ -6,6 +6,7 @@ import BootstrapVue from 'bootstrap-vue'
 import Loading from 'vue-loading-overlay'
 import VeeValidate from 'vee-validate'
 import Notifications from 'vue-notification'
+import VueChatScroll from 'vue-chat-scroll'
 
 import store from './store'
 import Login from './components/Login'
@@ -41,6 +42,7 @@ import './assets/css/global.css'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+Vue.use(VueChatScroll)
 Vue.use(Loading, {
   color: '#000000',
   loader: 'dots',
