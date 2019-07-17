@@ -22,7 +22,6 @@ import Profile from './components/Profile'
 
 import NewModule from './components/bots/NewModule'
 import EditResponse from './components/bots/EditResponse'
-import EditTriggers from './components/bots/EditTriggers'
 
 import Inbox from './components/inbox/Inbox'
 import InboxContacts from './components/inbox/InboxContacts'
@@ -95,8 +94,6 @@ const routes = [
     name: 'module_details',
     children: [
       { path: 'new-response', component: NewResponse, name: 'new_response' },
-      { path: 'new-response', component: NewResponse, name: 'new_response' },
-      { path: 'triggers/:trigger_id', component: EditTriggers, name: 'edit_trigger' },
       { path: 'responses/:response_id', component: EditResponse, name: 'edit_response' }
     ]
   },
