@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card-body">
         <p class="text-secondary nomessages" v-if="messages.length==0">
-            [No messages yet!]
+            [Loading...]
         </p>
         <div class="messages">
         <div class="threads"  v-chat-scroll="{always: false, smooth: true}" colour='success' :class="className">
