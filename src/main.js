@@ -92,31 +92,20 @@ const routes = [
     ]
   },
   // Bot routes
-<<<<<<< HEAD
-  {
-    path: '/module/:id/',
-=======
   { path: '/module/:id/',
->>>>>>> 706563cef5c08442a88bf9096a913fa1608af59d
     component: ModuleDetails,
     name: 'module_details',
     children: [
       { path: 'new-response', component: NewResponse, name: 'new_response' },
       { path: 'triggers/', component: Trigger, name: 'triggers_list' },
       { path: 'responses/', component: Responses, name: 'responses_list' },
-<<<<<<< HEAD
       { path: 'edit-response/:response_id', component: EditResponse, name: 'edit_response' },
       { path: 'edit-trigger/:trigger_id', component: EditTriggers, name: 'edit_trigger' }
-    ]
-  }
-=======
-      { path: 'edit-response/:response_id', component: EditResponse, name: 'edit_response' }
     ]
   },
   // Contacts routes
   { path: '/new-contact/', component: AddContact, name: 'new_contact' },
   { path: '/contacts/', component: Contacts, name: 'contacts' }
->>>>>>> 706563cef5c08442a88bf9096a913fa1608af59d
 ]
 
 const router = new VueRouter({ routes })

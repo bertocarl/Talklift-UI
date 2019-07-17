@@ -33,18 +33,17 @@ export default {
 
   computed: {
     trigger_id() {
-      return this.$router.params.trigger_id;
+      return this.$route.params.trigger_id;
     }
   },
 
   methods: {
-    get_trigger: function() {
+    get_trigger: function(trigger_id) {
       let self = this;
       axios
-        .get("triggers/")
+        .get("triggers/", { params: { trigger_id: this.trigger_id } })
         .then(resp => {
           this.triggers = resp.data;
-          console.log("successnu");
         })
         .catch(err => {
           console.log("Error", err);
@@ -53,10 +52,11 @@ export default {
 
     edit_triggers: function() {
       let self = this;
+      let payload = this.edit_trigger;
       axios
-        .put("triggers/" + this.trigger_id + "/", this.edit_trigger)
+        .put("triggers/", { params: { trigger_id: this.trigger_id } }, payload)
         .then(resp => {
-          self.$router.push({ name: "response_details" });
+          self.$router.push({ name: "triggers_list" });
         })
         .catch(err => {
           console.log("Error", err);

@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     response_id() {
-      return this.$router.params.response_id
+      return this.$route.params.response_id
     }
   },
   methods: {
@@ -54,10 +54,9 @@ export default {
     get_response: function() {
       let self = this;
       axios
-        .get("responses/")
+        .get("responses/", {params: {response_id: this.response_id}})
         .then(resp => {
           this.responses = resp.data;
-          console.log("success");
         })
         .catch(err => {
           console.log("Error", err);

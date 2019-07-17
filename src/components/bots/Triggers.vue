@@ -77,6 +77,7 @@ export default {
           loader.hide();
         });
     },
+    
 
     getTriggers: function() {
       let self = this;
