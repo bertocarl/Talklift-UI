@@ -10,12 +10,6 @@
           </div>
         </router-link>
       </div>
-
-      <div class="actions my-4">
-        <router-link :to="{name: 'new_response', params: {id: module_id}}" class="btn btn-primary btn-block">
-          <i class="fa fa-plus">New Response</i>
-        </router-link>
-      </div>
     </div>
   </div>
 </template>
