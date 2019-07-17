@@ -1,6 +1,6 @@
 <template>
   <div class="module-details">
-    <sub-nav :title="'Manage '+module.name" />
+    <sub-nav :title="title" />
     <div class="my-4">
       <div class="container">
         <div class="row">
@@ -27,13 +27,13 @@
 
       <!-- Inject children modals -->
       <router-view />
-
+      <!-- End modals injection -->
     </div>
   </div>
 </template>
 
 <script>
-
+import axios from 'axios';
 
 import SubNav from './../SubNav';
 import Responses from './Responses';
@@ -48,12 +48,42 @@ export default {
   computed: {
     module_id() {
       return this.$route.params.id;
+    },
+    title() {
+      if (this.module.name) {
+        return 'Manage '+this.module.name
+      } 
+      return 'Manage'
     }
   },
   data() {
     return {
       module: {}
     };
+  },
+  created() {
+    this.getModule();
+  },
+  methods: {
+    getModule() {
+      let self = this;
+      let loader = self.$loading.show();
+      axios.get("modules/"+this.module_id+'/', {})
+        .then(resp => {
+          self.module = resp.data;
+          loader.hide();
+        })
+        .catch(err => {
+          console.log("Error", err);
+          self.$notify({
+            group: "default",
+            type: "error",
+            title: err,
+            text: err.response.data
+          });
+          loader.hide();
+        });
+    }
   }
 };
 </script>
