@@ -3,12 +3,25 @@
     <sub-nav :title="'Manage '+module.name" />
     <div class="my-4">
       <div class="container">
-        <router-link :to="{name: 'triggers_list', params: {id: module_id}}">Triggers</router-link>
-        <br />
-        <router-link :to="{name: 'responses_list', params: {id: module_id}}">Responses</router-link>
-
-        <router-view/>
+        <div class="row">
+          <div class="col-12 col-md-7">
+            <h5>Responses</h5>
+            <div class="my-4">
+              <responses />
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <h5>Triggers</h5>
+            <div class="my-4">
+              <triggers />
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Inject children modals -->
+      <router-view />
+
     </div>
   </div>
 </template>
@@ -17,10 +30,14 @@
 
 
 import SubNav from './../SubNav';
+import Responses from './Responses';
+import Triggers from './Triggers';
 
 export default {
   components: {
-    SubNav
+    SubNav,
+    Responses,
+    Triggers
   },
   computed: {
     module_id() {

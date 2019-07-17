@@ -1,60 +1,14 @@
 <template>
   <div class="responses">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-6 col-md-3">
-
-          <form @submit="submitForm" action="javascript:;">
-            
-            <div class="form-group">
-              <label class="control-label">Text Content</label>
-              <input
-                name="text"
-                class="form-control"
-                v-validate="'required|text'"
-                type="text"
-                v-model="form.content.text"
-                placeholder="Enter text content"
-              />
-              <div class="help-block text-danger">
-                <span>{{ errors.first('text') }}</span>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="control-label">Quick Replies Content</label>
-              <input
-                name="quick replies"
-                class="form-control"
-                v-validate="'required|text'"
-                type="text"
-                v-model="form.content.quick_replies"
-                placeholder="Enter a quick reply"
-              />
-              <div class="help-block text-danger">
-                <span>{{ errors.first('quick_replies') }}</span>
-              </div>
-            </div>
-
-            <div class="action">
-              <button type="submit" class="btn btn-primary">Create Response</button>
-            </div>
-          </form>
-        </div>
-
-        <div class="col-md-6 col-md-3" v-for="response in responses" :key="response.id">
-          <router-link
-            :to="{name: 'edit_response', params: {response_id: response.id, id: module_id} }"
-          >
-            <div class="card">
-              <div class="card-body">
-                <h4>{{response.content.text}}</h4>
-                <h6>{{response.content.quick_replies}}</h6>
-              </div>
-            </div>
-          </router-link>
-        </div>
+    <div class="row">
+      <div class="col-12" v-for="response in responses" :key="response.id">
+        <router-link class="card mb-2" 
+          :to="{name: 'edit_response', params: {response_id: response.id, id: module_id} }">
+          <div class="card-body">
+            <div>{{response.content.text}}</div>
+            <div>{{response.content.quick_replies}}</div>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -72,12 +26,6 @@ export default {
   data() {
     return {
       responses: [],
-      form: {
-        content: {
-          text: "",
-          quick_replies: ""
-        }
-      }
     };
   },
 
@@ -86,29 +34,6 @@ export default {
   },
 
   methods: {
-    submitForm: function() {
-      let self = this;
-      let payload = this.form;
-      let loader = self.$loading.show();
-      payload["module_id"] = this.module_id;
-      axios
-        .post("responses/", payload)
-        .then(resp => {
-          self.$router.push({ name: "responses_list" });
-          loader.hide();
-        })
-        .catch(err => {
-          loader.hide();
-          console.log("Error", err);
-          self.$notify({
-            group: "default",
-            type: "error",
-            title: err,
-            text: err.response.data
-          });
-        });
-    },
-
     getResponses: function() {
       let self = this;
       axios

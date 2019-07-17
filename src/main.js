@@ -21,8 +21,6 @@ import NewResponse from './components/bots/NewResponse'
 import Profile from './components/Profile'
 
 import NewModule from './components/bots/NewModule'
-import Trigger from './components/bots/Triggers'
-import Responses from './components/bots/Responses'
 import EditResponse from './components/bots/EditResponse'
 import EditTriggers from './components/bots/EditTriggers'
 
@@ -97,10 +95,9 @@ const routes = [
     name: 'module_details',
     children: [
       { path: 'new-response', component: NewResponse, name: 'new_response' },
-      { path: 'triggers/', component: Trigger, name: 'triggers_list' },
-      { path: 'responses/', component: Responses, name: 'responses_list' },
-      { path: 'edit-response/:response_id', component: EditResponse, name: 'edit_response' },
-      { path: 'edit-trigger/:trigger_id', component: EditTriggers, name: 'edit_trigger' }
+      { path: 'new-response', component: NewResponse, name: 'new_response' },
+      { path: 'triggers/:trigger_id', component: EditTriggers, name: 'edit_trigger' },
+      { path: 'responses/:response_id', component: EditResponse, name: 'edit_response' }
     ]
   },
   // Contacts routes
