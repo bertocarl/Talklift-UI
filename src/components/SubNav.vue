@@ -8,8 +8,8 @@
                 <div class="col-12 col-md-6 text-right">
                     <ul class="list-inline" v-if="actions">
                         <li class="list-inline-item" v-for="action in actions" :key="action.href">
-                            <a :href="action.href" :class="'btn btn-sm btn-'+action.type" v-if="action">
-                                {{action.label}}
+                            <a :href="action.href" :class="'btn btn-'+action.type" v-if="action">
+                                <span v-if="action.icon"><i :class="action.icon"></i>&nbsp;</span>{{action.label}}
                             </a>
                         </li>
                     </ul>
