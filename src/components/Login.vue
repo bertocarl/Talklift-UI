@@ -64,7 +64,6 @@ export default {
     doLogin: function() {
       let self = this;
       this.$validator.validate().then(valid => {
-        console.log('valid?', valid)
         if (valid) {
           let loader = self.$loading.show();
           const performLogin  = function(form) {

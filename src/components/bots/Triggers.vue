@@ -1,46 +1,32 @@
 <template>
   <div class="triggers">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-3">
-          <form @submit="submitForm" action="javascript:;">
-            <div class="form-group">
-              <label class="control-label">Trigger</label>
-              <input
-                name="text"
-                class="form-control"
-                v-validate="'required|text'"
-                v-model="form.text"
-                placeholder="Enter a trigger"
-              />
-              <div class="help-block text-danger">
-                <span>{{ errors.first('text') }}</span>
-              </div>
-            </div>
-            <div class="actions">
-              <button type="submit" class="btn btn-primary">Create A Trigger</button>
-            </div>
-          </form>
-        </div>
-
-        <div class="col-md-6 col-md-3 my-2" v-for="trigger in triggers" :key="trigger.id">
-          <router-link :to="{name: 'triggers_list', params: { id: trigger.id }}">
-          <div class="card">
-            <div class="card-body">
-              <h5>{{trigger.text}}</h5>
-            </div>
-          </div>
-          </router-link>
-        </div>
+    <div class="row">
+      <div class="col-12">
+        <multiselect 
+          v-model="triggers" 
+          tag-placeholder="Add this as new trigger" 
+          placeholder="Search or add a trigger" 
+          label="text" 
+          track-by="id" 
+          :options="triggers" 
+          :multiple="true" 
+          :taggable="true" 
+          @tag="addTrigger" 
+          @remove="removeTrigger"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios"
+import Multiselect from 'vue-multiselect'
 
 export default {
+  components: {
+    Multiselect
+  },
   computed: {
     module_id() {
       return this.$route.params.id;
@@ -60,15 +46,11 @@ export default {
   },
 
   methods: {
-    submitForm: function() {
+    removeTrigger(trigger) {
       let self = this;
-      let payload = this.form;
       let loader = self.$loading.show();
-      payload["module_id"] = this.module_id;
-      axios
-        .post("triggers/", payload)
+      axios.delete("triggers/"+trigger.id+'/', {})
         .then(resp => {
-          self.$router.push({ name: "triggers_list" });
           loader.hide();
         })
         .catch(err => {
@@ -76,12 +58,26 @@ export default {
           loader.hide();
         });
     },
-
-    getTriggers: function() {
+    addTrigger(text) {
+      let self = this;
+      let payload = this.form;
+      let loader = self.$loading.show();
+      payload["module_id"] = this.module_id;
+      payload["text"] = text;
+      axios.post("triggers/", payload)
+        .then(resp => {
+          loader.hide();
+          self.triggers.push(resp.data); 
+        })
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+        });
+    },
+    getTriggers() {
       let self = this;
       let loader = self.$loading.show();
-      axios
-        .get("triggers/")
+      axios.get("triggers/", {params: {module: this.module_id}})
         .then(resp => {
           this.triggers = resp.data;
           loader.hide();
@@ -101,5 +97,8 @@ export default {
 };
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
 <style scoped>
+
 </style>

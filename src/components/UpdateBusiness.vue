@@ -57,21 +57,20 @@ export default {
     getBusiness() {
       let self = this;
       let loading = self.$loading.show();
-      axios
-        .get("businesses/", config)
-        .then(resp => {
-          if (resp.data) {
-            if (resp.data.length > 0) {
-              self.business = resp.data[0];
-              loader.hide();
-            }
+      axios.get("businesses/")
+      .then(resp => {
+        if (resp.data) {
+          if (resp.data.length > 0) {
+            self.business = resp.data[0];
+            loader.hide();
           }
-        })
-        .catch(err => {
-          console.log("Error", err);
-          loader.hide();
-        });
-    },
+        }
+      })
+      .catch(err => {
+        console.log("Error", err);
+        loader.hide();
+      });
+  },
     updatebusiness() {
       let self = this;
       let loader = self.$loading.show();
