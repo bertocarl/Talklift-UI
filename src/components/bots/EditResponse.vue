@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     response_id() {
-      return this.$$router.params.response_id
+      return this.$router.params.response_id
     }
   },
   methods: {
@@ -64,17 +64,17 @@ export default {
         });
     },
 
-    edit_response: function() {
-        let self = this;
-        axios
-        .put("responses/" + this.response_id + "/", this.edit_response )
-        .then(resp => {
-            self.$router.push( { name: "response_details" })
-        })
-        .catch(err => {
-            console.log("Error", err)
-        })
-    }
+    // edit_response: function() {
+    //     let self = this;
+    //     axios
+    //     .put("responses/" + this.response_id + "/", this.edit_response )
+    //     .then(resp => {
+    //         self.$router.push( { name: "response_details" })
+    //     })
+    //     .catch(err => {
+    //         console.log("Error", err)
+    //     })
+    // }
   }
 };
 </script>

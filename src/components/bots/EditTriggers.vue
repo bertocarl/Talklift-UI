@@ -51,7 +51,7 @@ export default {
         });
     },
 
-    edit_trigger: function() {
+    edit_triggers: function() {
       let self = this;
       axios
         .put("triggers/" + this.trigger_id + "/", this.edit_trigger)
