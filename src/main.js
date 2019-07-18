@@ -21,6 +21,7 @@ import NewResponse from './components/bots/NewResponse'
 import Profile from './components/settings/Profile'
 import Settings from './components/settings/Settings'
 import SettingsUpdate from './components/settings/SettingsUpdate'
+import Teams from './components/settings/Teams'
 
 import NewModule from './components/bots/NewModule'
 import EditResponse from './components/bots/EditResponse'
@@ -87,7 +88,8 @@ const routes = [
     component: Settings,
     children: [
       { path: '', component: SettingsUpdate, name: 'settings_update' },
-      { path: '/profile/', component: Profile, name: 'profile' }
+      { path: '/profile/', component: Profile, name: 'profile' },
+      { path: '/teams', component: Teams, name: 'teams' }
     ]
   },
   // Inbox routes

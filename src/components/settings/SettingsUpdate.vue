@@ -61,7 +61,7 @@
             </div>
 
             <div class="action">
-              <button type="submit">Update Settings</button>
+              <button type="submit" class="btn btn-primary">Update Settings</button>
             </div>
             
           </form>
@@ -69,11 +69,33 @@
         </div>
 
         <div class="col-md-6">
-            <h1>Your ProfileDetails</h1>
+            <h1>{{form.bot_name}}</h1>
+            <h1>Bot Settings </h1>
           </div>
 
           <div class="dropdown-divider"></div>
 
+      </div>
+      <br>
+      <br>
+      <br>
+
+      <!-- teams -->
+      <div class="row">
+        
+          <div class="col-md-3">
+               <router-link :to="{name: 'teams'}" class="btn btn-primary btn-block">
+                <i class="fa fa-plus">New Teams</i>
+        </router-link>
+           
+        </div>
+
+        <div class="col-md-6">
+          <div class="float-right">
+            <h1>Hello </h1>
+            {{get_teams}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -81,8 +103,14 @@
 
 <script>
 import axios from "axios";
+import Teams from './../settings/Teams';
 
 export default {
+
+  components: {
+    Teams
+  },
+
   data() {
     return {
       form: {
@@ -90,15 +118,33 @@ export default {
         description: "",
         category: "",
         published: ""
-      }
+      },
+      get_teams: []
     };
   },
 
+  created() {
+    this.getTeams()
+  },
+
   methods: {
+
     updateSettings: function() {
       axios.post("botsettings/", this.form)
       .then(resp => {
         console.log("Settings Updated")
+      })
+      .catch(err => {
+        console.log("Error", err)
+      })
+    },
+
+    getTeams: function() {
+      let self = this;
+      axios.get("teams/")
+      .then(resp => {
+        self.get_teams = resp.data;
+        console.log("Received")
       })
       .catch(err => {
         console.log("Error", err)

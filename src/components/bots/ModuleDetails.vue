@@ -13,6 +13,7 @@
               <triggers />
             </div>
           </div>
+          
           <div class="col-12 col-md-7">
             <h5>Responses</h5>
             <div>
