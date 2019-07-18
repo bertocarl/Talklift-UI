@@ -2,22 +2,9 @@
   <div class="container">
     <div class="row">
       <b-modal v-model="show_modal" hide-footer title="New Team" @hidden="hideModal">
+        
         <form @submit="createTeam" action="javascript:;">
-          <div class="form-group">
-            <label class="control-label">User Id</label>
-            <input
-              name="user_id"
-              class="form-control"
-              v-validate="'required'"
-              type="text"
-              v-model="forms.user_id"
-              placeholder="Enter user identification"
-            />
-            <div class="help-block text-danger">
-              <span>{{ errors.first('user_id') }}</span>
-            </div>
-          </div>
-
+          
           <div class="form-group">
             <label class="control-label">User Role</label>
             <input
@@ -28,6 +15,23 @@
               placeholder="Enter a user role"
             />
           </div>
+
+          <div class="form-group">
+            <label class="control-label">User Id</label>
+            <input
+              name="user_id"
+              class="form-control"
+              v-validate="'required'"
+              type="text"
+              v-model="forms.user_id"
+              placeholder="Enter user identification"
+            />
+            
+            <div class="help-block text-danger">
+              <span>{{ errors.first('user_id') }}</span>
+            </div>
+          </div>
+
 
           <div class="action">
             <button type="submit" class="btn btn-primary">Create Team</button>
@@ -57,7 +61,7 @@ export default {
       this.$router.push({ name: "settings_update" });
     },
     createTeam() {
-      axios.post("team/", this.form)
+      axios.post("/team/", this.form)
            .then(resp => {
                console.log("SUccess")
            })

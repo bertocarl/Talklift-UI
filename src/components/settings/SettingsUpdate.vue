@@ -76,17 +76,20 @@
       <!-- teams -->
       <div class="row">
         
-          <div class="col-md-3">
+          <div class="col-md-5 float-left">
                <router-link :to="{name: 'teams'}" class="btn btn-primary btn-block">
                 <i class="fa fa-plus">New Teams</i>
         </router-link>
            
         </div>
 
-        <div class="col-md-6">
-          <div class="float-right">
-            <h1>Hello </h1>
+        <div class="col-md-7" v-for="team in get_teams" :key="team.id">
+          <div class="card">
+          <div class="card-body float-right">
+            <h1>{{get_teams.roles}}</h1>
+            <h1>{{get_teams.user_id}}</h1>
             {{get_teams}}
+          </div>
           </div>
         </div>
       </div>
@@ -126,7 +129,7 @@ export default {
         description: "",
         categories: ""
       },
-      get_teams: {}
+      get_teams: []
     };
   },
 
@@ -148,7 +151,7 @@ export default {
 
     getTeams: function() {
       let self = this;
-      axios.get("teams/")
+      axios.get("/team/")
       .then(resp => {
         self.get_teams = resp.data;
         console.log("Received")
