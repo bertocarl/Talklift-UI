@@ -1,19 +1,33 @@
 <template>
 <div class="card">
     <div class="card-body">
+        <div class="message-header">
+            <div class="message-header-img">
+                <img src="assets\Norbert.png"/>
+            </div>
+            <div class="active">
+                <h5>Noey Human</h5>
+                <h6>3 hours ago...</h6>
+            </div>
+            <div class="header-icons">
+                <i class="fa fa-phone"></i>
+                <i class="fa fa-video-camera"></i>
+                <i class="fa fa-info-circle"></i>
+            </div>
+            </div>
         <p class="text-secondary nomessages" v-if="messages.length==0">
             [Loading...]
         </p>
         <div class="messages">
-        <div class="threads"  v-chat-scroll="{always: false, smooth: true}" colour='success' :class="className">
-            <ul class="list-unstyled">
-                <li class="list-item" v-for="message in messages" :key="message.id">
-                    <div class="mb-2">
-                        {{message.text}}
-                        <small class="badge float-right" :class="badgeClass">{{message.sender}}{{message.created_at}}</small>
-                    </div>
-                </li>
-            </ul>
+        <div class="threads" v-chat-scroll="{always: false, smooth: true}">
+            <div class="message" :class="{'message-in': message.sender == 'CONTACT', 'message-out': message.sender != 'CONTACT'}" v-for="message in messages" :key="message.id">
+                <div class="mb-2 message-content">
+                    <div class="message-text">{{message.text}}</div>
+                        <div class="meta">
+                            <div class="date"><small>{{message.created_at}}</small></div>
+                        </div>
+                </div>
+            </div>
         </div>
         </div>
         <div class="action">
@@ -36,22 +50,9 @@
 import axios from 'axios'
 
 export default {
-    props:[
-        'colour'
-    ],
     computed:{
         contact_id() {
             return this.$route.params.contact_id
-        },
-        className(){
-            let class_name = {}
-            class_name['list-unstyled'+this.colour] = true
-            return
-        },
-        badgeClass(){
-            let class_name = {}
-            class_name['badge'+this.colour] = true
-            return class_name
         }
     },
     data() {
@@ -102,5 +103,88 @@ export default {
 .threads {
     overflow:auto;
     height: 70vh;
+}
+.message {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+.message-in {
+    align-self: flex-start;
+    justify-content: flex-start;
+    display: flex;
+}
+
+.message-out {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 11px;
+    border-radius: 10px;
+}
+
+.message-out .message-content {
+    background: #efefef;
+}
+
+
+.message-in .message-content {
+    background: rgb(66, 133, 244);
+    color: #efefef;
+    align-self: flex-start;
+}
+.message-header{
+border: 1px solid #ccc;
+width: 100%;
+height: 10%;
+border-bottom: none;
+display: inline-block;
+background-color: rgb(66, 133, 244);
+}
+.img{
+    max-width: 100%;
+    border-radius: 50%;
+}
+.message-header-img{
+    border-radius: 50%;
+    width: 40px;
+    margin-left: 5%;
+    margin-top: 12px;
+    float: left;
+}
+.active{
+    width: 120px;
+    float: left;
+    margin-top: 10px;
+}
+.active h5{
+    font-size: 15px;
+    margin-left: 10px;
+    color: #fff;
+}
+.active h6{
+    font-size: 10px;
+    margin-left: 10px;
+    line-height: 2px;
+    color: #fff;
+}
+.header-icons{
+    width: 120px;
+    float: right;
+    margin-top: 12px;
+    margin-right: 10px;
+}
+.header-icons .fa{
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
 }
 </style>
