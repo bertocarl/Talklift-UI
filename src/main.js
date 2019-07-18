@@ -18,7 +18,9 @@ import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
 import NewResponse from './components/bots/NewResponse'
 
-import Profile from './components/Profile'
+import Profile from './components/settings/Profile'
+import Settings from './components/settings/Settings'
+import SettingsUpdate from './components/settings/SettingsUpdate'
 
 import NewModule from './components/bots/NewModule'
 import EditResponse from './components/bots/EditResponse'
@@ -78,8 +80,16 @@ const routes = [
   { path: '/logout', component: Logout, name: 'logout' },
   { path: '/signup/', component: Register, name: 'signup' },
   { path: '/business/', component: AddBusiness, name: 'update_business' },
-  { path: '/profile/', component: Profile, name: 'profile' },
   { path: '/newmodule/', component: NewModule, name: 'new_module' },
+
+  // Settings routes
+  { path: '/settings/',
+    component: Settings,
+    children: [
+      { path: '', component: SettingsUpdate, name: 'settings_update' },
+      { path: '/profile/', component: Profile, name: 'profile' }
+    ]
+  },
   // Inbox routes
   { path: '/inbox/',
     component: Inbox,
