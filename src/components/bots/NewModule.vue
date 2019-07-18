@@ -31,11 +31,11 @@
 <script>
 import axios from "axios";
 
-import SubNav from './../SubNav';
+import SubNav from "./../SubNav";
 
 export default {
   components: {
-    SubNav,
+    SubNav
   },
   data() {
     return {
@@ -52,11 +52,11 @@ export default {
         .post("modules/", this.form)
         .then(resp => {
           self.$router.push({ name: "index" });
-          loader.hide()
+          loader.hide();
         })
         .catch(err => {
           console.log("Error", err);
-          loader.hide()
+          loader.hide();
         });
     }
   }

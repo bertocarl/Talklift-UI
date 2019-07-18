@@ -2,9 +2,7 @@
   <div class="container">
     <div class="row">
       <b-modal v-model="show_modal" hide-footer title="New Team" @hidden="hideModal">
-        
         <form @submit="createTeam" action="javascript:;">
-          
           <div class="form-group">
             <label class="control-label">User Role</label>
             <input
@@ -26,12 +24,11 @@
               v-model="forms.user_id"
               placeholder="Enter user identification"
             />
-            
+
             <div class="help-block text-danger">
               <span>{{ errors.first('user_id') }}</span>
             </div>
           </div>
-
 
           <div class="action">
             <button type="submit" class="btn btn-primary">Create Team</button>
@@ -61,17 +58,24 @@ export default {
       this.$router.push({ name: "settings_update" });
     },
     createTeam() {
-        let self = this;
-        let loader =vself.$laoding.show()
-      axios.post("/team/", this.form)
-           .then(resp => {
-               loader.hide()
-               console.log("SUccess")
-           })
-           .catch(err => {
-               loader.hide();
-               console.log("Error", err)
-           })
+      let self = this;
+      let loader = vself.$laoding.show();
+      axios
+        .post("/team/", this.form)
+        .then(resp => {
+          loader.hide();
+          console.log("SUccess");
+        })
+        .catch(err => {
+          loader.hide();
+          console.log("Error", err);
+          self.$notify({
+            group: "default",
+            type: "error",
+            title: err,
+            text: err.response.data
+          });
+        });
     }
   }
 };

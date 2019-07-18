@@ -1,15 +1,10 @@
 <template>
-    <div class="new-bot">
-        New bot
-    </div>
+  <div class="new-bot">New bot</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

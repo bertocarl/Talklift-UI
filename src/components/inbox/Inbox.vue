@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import SubNav from './../SubNav';
+import SubNav from "./../SubNav";
 
 export default {
   components: {

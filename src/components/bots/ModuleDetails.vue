@@ -13,7 +13,7 @@
               <triggers />
             </div>
           </div>
-          
+
           <div class="col-12 col-md-7">
             <h5>Responses</h5>
             <div>
@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
-import SubNav from './../SubNav';
-import Responses from './Responses';
-import Triggers from './Triggers';
+import SubNav from "./../SubNav";
+import Responses from "./Responses";
+import Triggers from "./Triggers";
 
 export default {
   components: {
@@ -52,9 +52,9 @@ export default {
     },
     title() {
       if (this.module.name) {
-        return 'Manage '+this.module.name
-      } 
-      return 'Manage'
+        return "Manage " + this.module.name;
+      }
+      return "Manage";
     }
   },
   data() {
@@ -69,7 +69,8 @@ export default {
     getModule() {
       let self = this;
       let loader = self.$loading.show();
-      axios.get("modules/"+this.module_id+'/', {})
+      axios
+        .get("modules/" + this.module_id + "/", {})
         .then(resp => {
           self.module = resp.data;
           loader.hide();
@@ -90,5 +91,4 @@ export default {
 </script>
 
 <style>
-
 </style>

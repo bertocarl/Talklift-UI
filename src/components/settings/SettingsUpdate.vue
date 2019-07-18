@@ -26,8 +26,7 @@
                 type="text"
                 placeholder="Bot Description"
                 rows="3"
-              >
-              </textarea>
+              ></textarea>
             </div>
 
             <div class="form-group">
@@ -55,70 +54,60 @@
             <div class="action">
               <button type="submit" class="btn btn-primary">Update Settings</button>
             </div>
-            
           </form>
-
         </div>
 
         <div class="col-md-6">
-            <h1>{{form.bot_name}}</h1>
-            <h1>Bot Settings </h1>
-          </div>
-
-          
+          <h1>{{form.bot_name}}</h1>
+          <h1>Bot Settings</h1>
+        </div>
       </div>
-      <br>
-      <br>
-      <br>
-
+      <br />
+      <br />
+      <br />
 
       <b-alert show variant="secondary">Teams</b-alert>
       <!-- teams -->
+      <div class="card">
+      <div class="card-body">
       <div class="row">
-        
-          <div class="col-md-5 col-12 float-left">
-               <router-link :to="{name: 'teams'}" class="btn btn-primary btn-block">
-                <i class="fa fa-plus">New Teams</i>
-        </router-link>
-           
+        <div class="col-12 my-2 text-left">
+          <router-link :to="{name: 'teams'}" class="btn btn-primary ">
+            <i class="fa fa-plus">Add Member</i>
+          </router-link>
         </div>
 
         <div class="col-md-7 col-12 float right" v-for="team in get_teams" :key="team.id">
           <div class="card">
-          <div class="card-body float-right">
-
-            <div>User Id: {{team.user_id}}: User Role: {{team.roles}}</div>
-            <div>Business Id: {{team.business}}</div>
-            
-          </div>
+            <div class="card-body float-right">
+              <div>User Id: {{team.user_id}}: User Role: {{team.roles}}</div>
+              <div>Business Id: {{team.business}}</div>
+            </div>
           </div>
         </div>
       </div>
-      <br>
-      <br>
-      <br>
+      </div>
+      </div>
+      <br />
+      <br />
+      <br />
       <!-- Business Settings -->
       <b-alert show variant="secondary">Business Settings</b-alert>
 
       <div class="row">
-        <div class="col-12 ">
-
-              <Business />
-          
+        <div class="col-12">
+          <Business />
+        </div>
       </div>
     </div>
-
-
-  </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Business from './../settings/Business'
+import Business from "./../settings/Business";
 
 export default {
-
   components: {
     Business
   },
@@ -135,37 +124,38 @@ export default {
   },
 
   created() {
-    this.getTeams()
+    this.getTeams();
   },
 
   methods: {
-
     updateSettings: function() {
       let self = this;
       let loader = self.$loading.show();
-      axios.post("botsettings/", this.form)
-      .then(resp => {
-        loader.hide()
-        console.log("Settings Updated")
-      })
-      .catch(err => {
-        loader.hide()
-        console.log("Error", err)
-      });
+      axios
+        .post("botsettings/", this.form)
+        .then(resp => {
+          loader.hide();
+          console.log("Settings Updated");
+        })
+        .catch(err => {
+          loader.hide();
+          console.log("Error", err);
+        });
     },
 
     getTeams: function() {
       let self = this;
       let loader = self.$loading.show();
-      axios.get("/team/")
-      .then(resp => {
-        self.get_teams = resp.data;
-        loader.hide();
-      })
-      .catch(err => {
-        console.log("Error", err)
-        loader.hide();
-      });
+      axios
+        .get("/team/")
+        .then(resp => {
+          self.get_teams = resp.data;
+          loader.hide();
+        })
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+        });
     }
   }
 };
