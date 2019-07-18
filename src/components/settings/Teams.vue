@@ -61,11 +61,15 @@ export default {
       this.$router.push({ name: "settings_update" });
     },
     createTeam() {
+        let self = this;
+        let loader =vself.$laoding.show()
       axios.post("/team/", this.form)
            .then(resp => {
+               loader.hide()
                console.log("SUccess")
            })
            .catch(err => {
+               loader.hide();
                console.log("Error", err)
            })
     }

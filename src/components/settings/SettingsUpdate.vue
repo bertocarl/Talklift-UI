@@ -76,19 +76,20 @@
       <!-- teams -->
       <div class="row">
         
-          <div class="col-md-5 float-left">
+          <div class="col-md-5 col-12 float-left">
                <router-link :to="{name: 'teams'}" class="btn btn-primary btn-block">
                 <i class="fa fa-plus">New Teams</i>
         </router-link>
            
         </div>
 
-        <div class="col-md-7" v-for="team in get_teams" :key="team.id">
+        <div class="col-md-7 col-12 float right" v-for="team in get_teams" :key="team.id">
           <div class="card">
           <div class="card-body float-right">
-            <h1>{{get_teams.roles}}</h1>
-            <h1>{{get_teams.user_id}}</h1>
-            {{get_teams}}
+
+            <div>User Id: {{team.user_id}}: User Role: {{team.roles}}</div>
+            <div>Business Id: {{team.business}}</div>
+            
           </div>
           </div>
         </div>
@@ -140,25 +141,31 @@ export default {
   methods: {
 
     updateSettings: function() {
+      let self = this;
+      let loader = self.$loading.show();
       axios.post("botsettings/", this.form)
       .then(resp => {
+        loader.hide()
         console.log("Settings Updated")
       })
       .catch(err => {
+        loader.hide()
         console.log("Error", err)
-      })
+      });
     },
 
     getTeams: function() {
       let self = this;
+      let loader = self.$loading.show();
       axios.get("/team/")
       .then(resp => {
         self.get_teams = resp.data;
-        console.log("Received")
+        loader.hide();
       })
       .catch(err => {
         console.log("Error", err)
-      })
+        loader.hide();
+      });
     }
   }
 };

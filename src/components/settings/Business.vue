@@ -87,13 +87,18 @@ export default {
   },
 
   methods: {
+
     updateBusiness: function() {
+       let self = this;
+       let loader = self.$loading.show();
       axios
         .post("businesses/", this.form)
         .then(resp => {
+          loader.hide();
           console.log("Business Updated");
         })
         .catch(err => {
+            loader.hide()
           console.log("Error", err);
         });
     }
