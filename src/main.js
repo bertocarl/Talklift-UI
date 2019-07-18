@@ -89,7 +89,7 @@ const routes = [
     children: [
       { path: '', component: SettingsUpdate, name: 'settings_update' },
       { path: '/profile/', component: Profile, name: 'profile' },
-      { path: '/teams', component: Teams, name: 'teams' }
+      { path: '/teams/', component: Teams, name: 'teams' }
     ]
   },
   // Inbox routes

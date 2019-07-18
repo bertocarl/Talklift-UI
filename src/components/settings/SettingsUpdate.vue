@@ -69,24 +69,30 @@
       <b-alert show variant="secondary">Teams</b-alert>
       <!-- teams -->
       <div class="card">
-      <div class="card-body">
-      <div class="row">
-        <div class="col-12 my-2 text-left">
-          <router-link :to="{name: 'teams'}" class="btn btn-primary ">
-            <i class="fa fa-plus">Add Member</i>
-          </router-link>
-        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 my-2 text-left">
+              <router-link :to="{name: 'teams'}" class="btn btn-primary">
+                <i class="fa fa-plus">Add Member</i>
+              </router-link>
+            </div>
 
-        <div class="col-md-7 col-12 float right" v-for="team in get_teams" :key="team.id">
-          <div class="card">
-            <div class="card-body float-right">
-              <div>User Id: {{team.user_id}}: User Role: {{team.roles}}</div>
-              <div>Business Id: {{team.business}}</div>
+            <div class="col-md-7 col-12 float right" v-for="team in get_teams" :key="team.id">
+              <div class="card">
+                <div class="card-body float-right">
+                  <div>User Id: {{team.user_id}}: User Role: {{team.roles}}</div>
+                  <div>Business Id: {{team.business}}</div>
+                  <button class="btn btn-secondary btn-sm" @click="updateTeam">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      </div>
       </div>
       <br />
       <br />
@@ -155,6 +161,34 @@ export default {
         .catch(err => {
           console.log("Error", err);
           loader.hide();
+        });
+    },
+
+    updateTeam: function() {
+      let self = this;
+      let loader = self.$loading.show();
+
+      axios
+        .put("/team/")
+        .then(resp => {
+          self.response = resp.data;
+          loader.hide();
+          self.$notify({
+            group: "default",
+            type: "success",
+            title: "Success",
+            text: "Changes saved."
+          });
+        })
+        .catch(err => {
+          loader.hide();
+          console.log("Error", err);
+          self.$notify({
+            group: "default",
+            type: "error",
+            title: err,
+            text: err.response.data
+          });
         });
     }
   }
