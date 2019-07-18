@@ -73,8 +73,7 @@
             <h1>Bot Settings </h1>
           </div>
 
-          <div class="dropdown-divider"></div>
-
+          
       </div>
       <br>
       <br>
@@ -97,18 +96,33 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
+      <br>
+
+      <!-- Business Settings -->
+
+      <div class="row">
+        <div class="col-12 ">
+
+              <Business />
+          
+      </div>
     </div>
+
+
+  </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Teams from './../settings/Teams';
+import Business from './../settings/Business'
 
 export default {
 
   components: {
-    Teams
+    Business
   },
 
   data() {
@@ -119,7 +133,7 @@ export default {
         category: "",
         published: ""
       },
-      get_teams: []
+      get_teams: {}
     };
   },
 
