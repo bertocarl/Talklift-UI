@@ -17,13 +17,15 @@
 
             <div class="form-group">
               <label class="settings">Address of the Business</label>
-              <input
+              <textarea
                 name="address"
                 class="form-control"
                 v-model="form.address"
                 type="text"
                 placeholder="Business Address"
-              />
+                rows="2"
+              >
+              </textarea>
             </div>
 
             <div class="form-group">

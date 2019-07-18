@@ -1,6 +1,7 @@
 <template>
   <div class="settings">
     <div class="container">
+      <b-alert show variant="secondary">Bot Settings</b-alert>
       <div class="row">
         <div class="col-md-6">
           <form action="javascript:;" @submit="updateSettings">
@@ -18,34 +19,25 @@
 
             <div class="form-group">
               <label class="settings">Description</label>
-              <input
+              <textarea
                 name="description"
                 class="form-control"
                 v-model="form.description"
                 type="text"
                 placeholder="Bot Description"
-              />
+                rows="3"
+              >
+              </textarea>
             </div>
 
             <div class="form-group">
               <label class="settings">Category</label>
               <input
-                name="category"
+                name="categories"
                 class="form-control"
-                v-model="form.category"
+                v-model="form.categories"
                 type="text"
                 placeholder="Category"
-              />
-            </div>
-
-            <div class="form-group">
-              <label class="settings">Published</label>
-              <input
-                name="published"
-                class="form-control"
-                v-model="form.published"
-                type="text"
-                placeholder="Published"
               />
             </div>
 
@@ -79,6 +71,8 @@
       <br>
       <br>
 
+
+      <b-alert show variant="secondary">Teams</b-alert>
       <!-- teams -->
       <div class="row">
         
@@ -99,8 +93,8 @@
       <br>
       <br>
       <br>
-
       <!-- Business Settings -->
+      <b-alert show variant="secondary">Business Settings</b-alert>
 
       <div class="row">
         <div class="col-12 ">
@@ -130,8 +124,7 @@ export default {
       form: {
         bot_name: "",
         description: "",
-        category: "",
-        published: ""
+        categories: ""
       },
       get_teams: {}
     };
