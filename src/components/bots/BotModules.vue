@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      nav_actions: [{label: 'Create a module', href:'/#/newmodule/', type: 'primary', icon: 'fa fa-plus'}],
+      nav_actions: [{label: 'Create Module', href:'/#/build/new/', type: 'primary', icon: 'fa fa-plus'}],
       modules: []
     };
   },

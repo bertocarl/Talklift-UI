@@ -36,7 +36,6 @@ export default {
   },
   computed: {
     show_dashboard() {
-      return true
       return this.$store.getters.getAccessToken;
     }
   }

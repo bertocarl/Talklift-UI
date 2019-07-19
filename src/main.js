@@ -74,22 +74,22 @@ axios.interceptors.response.use(function (response) {
 
 const routes = [
   { path: '/', component: Login, name: 'login' },
-  { path: '/build', component: Bot, name: 'index' },
   { path: '/logout', component: Logout, name: 'logout' },
   { path: '/signup/', component: Register, name: 'signup' },
-  { path: '/business/', component: AddBusiness, name: 'update_business' },
   { path: '/profile/', component: Profile, name: 'profile' },
-  { path: '/newmodule/', component: NewModule, name: 'new_module' },
+
   // Inbox routes
   { path: '/inbox/',
     component: Inbox,
     children: [
-      { path: '', component: InboxContacts, name: 'inbox_contacts' },
+      { path: '', component: InboxContacts, name: 'inbox' },
       { path: 'messages/:contact_id', component: Messages, name: 'messages' }
     ]
   },
   // Bot routes
-  { path: '/module/:id/',
+  { path: '/build', component: Bot, name: 'index' },
+  { path: '/build/new/', component: NewModule, name: 'new_module' },
+  { path: '/build/module/:id/',
     component: ModuleDetails,
     name: 'module_details',
     children: [
@@ -98,8 +98,11 @@ const routes = [
     ]
   },
   // Contacts routes
-  { path: '/new-contact/', component: AddContact, name: 'new_contact' },
-  { path: '/contacts/', component: Contacts, name: 'contacts' }
+  { path: '/contacts/', component: Contacts, name: 'contacts' },
+  { path: '/contacts/new/', component: AddContact, name: 'new_contact' },
+
+  // Business routes
+  { path: '/business/', component: AddBusiness, name: 'update_business' }
 ]
 
 const router = new VueRouter({ routes })
