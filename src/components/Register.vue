@@ -2,9 +2,12 @@
   <div class="register">
     <div class="container-fluid full-height">
       <div class="row full-height">
-        <div class="col-12 col-md-4 full-height valign">
+        <div class="col-12 col-md-4 valign full-height">
           <form @submit="doSignup" action="javascript:;">
-            <h1 class="text-center py-4">Sign Up</h1>
+            <div class="header text-center">
+              <img src="./../assets/img/logo.png" class="logo" />
+              <h1 class="my-4">Sign Up</h1>
+            </div>
             <div class="form-group">
               <label class="control-label">Email</label>
               <input
@@ -46,7 +49,7 @@
           <div class="row">
             <div class="col-8">
               <h2>Start something new by joining 500+ businesses like yours</h2>
-              <p>Conversation management can be complicated. Simplify it with TalkLift AI.</p>
+              <p>Conversations management can be complicated. Simplify it with TalkLift AI.</p>
             </div>
           </div>
         </div>
@@ -105,5 +108,8 @@ export default {
 <style scoped>
 .register {
   min-height: 100vh;
+}
+form {
+  height: 70vh;
 }
 </style>
