@@ -12,7 +12,7 @@ import Login from './components/Login'
 import Logout from './components/Logout'
 
 import Register from './components/Register'
-import AddBusiness from './components/AddBusiness'
+import UpdateBusiness from './components/business/UpdateBusiness'
 
 import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
@@ -102,7 +102,7 @@ const routes = [
   { path: '/contacts/new/', component: AddContact, name: 'new_contact' },
 
   // Business routes
-  { path: '/business/', component: AddBusiness, name: 'update_business' }
+  { path: '/business/', component: UpdateBusiness, name: 'update_business' }
 ]
 
 const router = new VueRouter({ routes })
