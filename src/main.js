@@ -93,8 +93,8 @@ const routes = [
     component: ModuleDetails,
     name: 'module_details',
     children: [
-      { path: 'new-response', component: NewResponse, name: 'new_response' },
-      { path: 'responses/:response_id', component: EditResponse, name: 'edit_response' }
+      { path: 'responses/new/', component: NewResponse, name: 'new_response' },
+      { path: 'responses/:response_id/manage', component: EditResponse, name: 'edit_response' }
     ]
   },
   // Contacts routes

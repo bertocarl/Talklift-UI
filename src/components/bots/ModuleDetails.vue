@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     nav_actions() {
-      let href = '/#/module/'+this.module_id+'/new-response';
+      let href = '/#/build/module/'+this.module_id+'/responses/new/';
       return [{label: 'New Response', href: href, icon: 'fa fa-plus', type: 'primary'}]
     },
     module_id() {

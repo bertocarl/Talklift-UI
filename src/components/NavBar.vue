@@ -2,9 +2,15 @@
     <div class="nav">
         <div class="nav-wrapper">
             <div class="profile">
-                <div class="avatar"></div>
+                <div class="avatar mb-2">
+                    <avatar username="Cheruiyot Felix" size=89></avatar>
+                </div>
                 <div class="name">
-                    Cheruiyot Felix
+                    <b-dropdown size="sm" class="name-dropdown">
+                        <template slot="button-content">Felix Cheruiyot</template>
+                        <b-dropdown-item href="/#/profile/">Profile</b-dropdown-item>
+                        <b-dropdown-item href="/#/logout/">Log Out</b-dropdown-item>
+                    </b-dropdown>
                 </div>
             </div>
 
@@ -43,35 +49,16 @@
                 </ul>
             </div>
         </div>
-        <!-- <b-navbar toggleable="lg" type="light" variant="light" class="box-shadow" fixed="top">
-            <b-navbar-brand href="/#/">TalkLift</b-navbar-brand>
-
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-            <b-collapse id="nav-collapse" is-nav>
-                <b-navbar-nav>
-                    <b-nav-item href="/#/get-started/">Get started</b-nav-item>
-                    <b-nav-item href="/#/">My Chatbot</b-nav-item>
-                    <b-nav-item href="/#/inbox/">Inbox</b-nav-item>
-                    <b-nav-item href="/#/contacts/">Contacts</b-nav-item>
-                </b-navbar-nav>
-
-                <b-navbar-nav class="ml-auto">
-                    <b-nav-item-dropdown right>
-                        <template slot="button-content">Account</template>
-                        <b-dropdown-item href="/#/profile/">Profile</b-dropdown-item>
-                        <b-dropdown-item href="/#/settings/">Settings</b-dropdown-item>
-                        <b-dropdown-item href="/#/billing/">Billing</b-dropdown-item>
-                        <b-dropdown-item href="/#/logout/">Log Out</b-dropdown-item>
-                    </b-nav-item-dropdown>
-                </b-navbar-nav>
-            </b-collapse>
-        </b-navbar> -->
     </div>
 </template>
 
 <script>
-export default {
+import Avatar from 'vue-avatar'
 
+export default {
+    components: {
+        Avatar
+    }
 }
 </script>
 
@@ -81,7 +68,7 @@ export default {
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        background: url(../assets/img/dashboard-cover.jpeg);
+        background: url(../assets/img/dashboard-cover.jpeg) no-repeat center center fixed;
         width: 200px;
         height: 100vh;
     }
@@ -95,10 +82,20 @@ export default {
 
     .profile {
         padding: 34px 11px;
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
         text-align: center;
         color: #efefef;
+        flex-direction: column;
     }
-    
+
+    .name-dropdown {
+        background: none !important;
+        border: none !important;   
+    }
+
+
     .links li{
         display: flex;
     }
