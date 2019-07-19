@@ -66,7 +66,7 @@ export default {
     },
     data() {
         return {
-            avatar_size: 89
+            avatar_size: 54
         }
     },
     methods: {
@@ -103,7 +103,7 @@ export default {
     }
 
     .profile {
-        padding: 34px 11px;
+        padding: 11px 11px 34px 11px;
         display: flex;
         align-items: center; 
         justify-content: center; 

@@ -9,7 +9,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-12 col-md-4">
-            <avatar :username="getAvatar(contact)"></avatar>  {{contact.first_name}} {{contact.last_name}}
+            <avatar :username="contact|getAvatar"></avatar>  {{contact.first_name}} {{contact.last_name}}
           </div>
           <div class="col-12 col-md-4">{{contact.email}} {{contact.phone_number}}</div>
         </div>
@@ -35,10 +35,13 @@ export default {
   created() {
     this.getContacts();
   },
-  methods: {
+  filters: {
     getAvatar(contact) {
-      return contact.first_name +' '+contact.last_name
-    },
+        if (contact.avatar) return contact.avatar
+        return contact.first_name +' '+contact.last_name
+    }
+  },
+  methods: {
     getContacts() {
       let self = this;
       let loader = self.$loading.show();

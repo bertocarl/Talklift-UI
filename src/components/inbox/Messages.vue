@@ -1,18 +1,10 @@
 <template>
-<div class="card">
-    <div class="card-body">
-        <div class="message-header">
-            <div class="message-header-img">
-                <img src="/home/k19/Desktop/code/talkLift/talklift-ui/src/assets/Norbert.png"/>
-            </div>
-            <div class="active">
-                <h5>Noey Human</h5>
-            </div>
-            </div>
-        <p class="text-secondary nomessages" v-if="messages.length==0">
-            [Loading...]
-        </p>
-        <div class="messages">
+<div class="message-container p-4">
+    <div class="message-header" v-if="contact">
+        <avatar :username="contact|getAvatar"></avatar>
+        {{contact}}
+    </div>
+    <div class="messages">
         <div class="threads" v-chat-scroll="{always: false, smooth: true}">
             <div class="message" :class="{'message-in': message.sender == 'CONTACT', 'message-out': message.sender != 'CONTACT'}" v-for="message in messages" :key="message.id">
                 <div class="mb-2 message-content">
@@ -23,27 +15,33 @@
                 </div>
             </div>
         </div>
-        </div>
-        <div class="action">
-            <form action="javascript:;" @submit="sendMessage">
-                <div class="row">
-                    <div class="col-9">
-                        <input type="text" class="form-control" v-model="new_message.text" placeholder="Type your message">
-                    </div>
-                    <div class="col-3 text-right">
-                        <button class="btn btn-primary" type="submit">Send</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+    </div>
+    <div class="action">
+        <form action="javascript:;" class="action-form">
+            <div class="message-input">
+                <textarea rows="1" class="form-control" v-on:keyup.enter="sendMessage" v-model="new_message.text" placeholder="Type your message"></textarea>
+            </div>
+            <div class="action-buttons">
+                <button class="btn attach-btn">
+                    <i class="fa fa-paperclip"></i>
+                </button>
+                <button class="btn btn-primary send-btn" type="submit" @click="sendMessage">
+                    <i class="fa fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 </template>
 
 <script>
 import axios from "axios";
+import Avatar from 'vue-avatar'
 
 export default {
+    components: {
+        Avatar
+    },
     computed:{
         contact_id() {
             return this.$route.params.contact_id
@@ -54,11 +52,19 @@ export default {
             new_message: {
                 text: ''
             },
-            messages: []
+            messages: [],
+            contact: {}
+        }
+    },
+    filters: {
+        getAvatar(contact) {
+            if (contact.avatar) return contact.avatar
+            return contact.first_name +' '+contact.last_name
         }
     },
     created() {
-        this.getMessages() 
+        this.getContact();
+        this.getMessages();
     },
     methods: {
         sendMessage: function() {
@@ -88,15 +94,28 @@ export default {
             .catch(err => {
                 console.log("Error", err);
             });
+        },
+        getContact: function() {
+            let self = this;
+            axios.get("contacts/"+this.contact_id+'/', {})
+            .then(resp => {
+                self.contact = resp.data;
+            })
+            .catch(err => {
+                console.log("Error", err);
+            });
         }
     }
   };
 </script>
 
 <style scoped>
+.message-container {
+    background: #efefef;
+}
 .threads {
     overflow:auto;
-    height: 70vh;
+    height: 54vh;
 }
 .message {
     margin-bottom: 8px;
@@ -126,59 +145,36 @@ export default {
 }
 
 .message-out .message-content {
-    background: #efefef;
+    background: #fafafa;
 }
-
 
 .message-in .message-content {
     background: rgb(66, 133, 244);
     color: #efefef;
     align-self: flex-start;
 }
-.message-header{
-border: 1px solid #ccc;
-width: 100%;
-height: 10%;
-border-bottom: none;
-display: inline-block;
-background-color: rgb(66, 133, 244);
+
+/* Message actions */
+.action-form {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
 }
-.img{
-    max-width: 100%;
-    border-radius: 50%;
+.message-input {
+    flex: 1;
 }
-.message-header-img{
-    border-radius: 50%;
-    width: 40px;
-    margin-left: 5%;
-    margin-top: 12px;
-    float: left;
+.attach-btn, .send-btn {
+    border-radius: 0 !important;
 }
-.active{
-    width: 120px;
-    float: left;
-    margin-top: 10px;
+.attach-btn {
+    background: none;
 }
-.active h5{
-    font-size: 15px;
-    margin-left: 10px;
-    color: #fff;
-}
-.active h6{
-    font-size: 10px;
-    margin-left: 10px;
-    line-height: 2px;
-    color: #fff;
-}
-.header-icons{
-    width: 120px;
-    float: right;
-    margin-top: 12px;
-    margin-right: 10px;
-}
-.header-icons .fa{
-    color: #fff;
-    cursor: pointer;
-    margin: 10px;
+.message-input .form-control {
+    background: #fff;
+    border: none;
+    border-radius: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    resize: none;
 }
 </style>
