@@ -8,7 +8,9 @@
     >
       <div class="card-body">
         <div class="row">
-          <div class="col-12 col-md-4">{{contact.first_name}} {{contact.last_name}}</div>
+          <div class="col-12 col-md-4">
+            <avatar :username="getAvatar(contact)"></avatar>  {{contact.first_name}} {{contact.last_name}}
+          </div>
           <div class="col-12 col-md-4">{{contact.email}} {{contact.phone_number}}</div>
         </div>
       </div>
@@ -17,9 +19,14 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios"
+
+import Avatar from 'vue-avatar'
 
 export default {
+  components: {
+    Avatar
+  },
   data() {
     return {
       contacts: []
@@ -29,6 +36,9 @@ export default {
     this.getContacts();
   },
   methods: {
+    getAvatar(contact) {
+      return contact.first_name +' '+contact.last_name
+    },
     getContacts() {
       let self = this;
       let loader = self.$loading.show();
