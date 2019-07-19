@@ -3,7 +3,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <h1>{{title}}</h1>
+                    <div style="display: flex">
+                        <a href="javascript:;" class="mr-4" v-responsive.sm.xs>
+                            <i class="fa fa-2x fa-bars"></i>
+                        </a>
+                        <h1>{{title}}</h1>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 text-right">
                     <ul class="list-inline" v-if="actions">

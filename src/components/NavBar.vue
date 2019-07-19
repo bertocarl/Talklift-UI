@@ -1,5 +1,5 @@
 <template>
-    <div class="nav">
+    <div class="nav" v-responsive.lg.xl>
         <div class="nav-wrapper">
             <div class="profile">
                 <div class="avatar mb-2">

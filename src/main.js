@@ -6,6 +6,7 @@ import BootstrapVue from 'bootstrap-vue'
 import Loading from 'vue-loading-overlay'
 import VeeValidate from 'vee-validate'
 import Notifications from 'vue-notification'
+import responsive from 'vue-responsive'
 
 import store from './store'
 import Login from './components/Login'
@@ -53,9 +54,9 @@ Vue.use(VeeValidate, {
   fieldsBagName: 'veeFields'
 })
 Vue.use(Notifications)
+Vue.use(responsive)
 
 axios.defaults.baseURL = 'https://api.talklift.com'
-
 axios.interceptors.request.use(function (request) {
   request.headers['token'] = store.getters.getAccessToken
   return request
