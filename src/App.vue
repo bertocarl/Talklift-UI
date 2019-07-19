@@ -8,7 +8,7 @@
     <!-- Show dashboard only -->
     <div v-if="show_dashboard" class="dashboard">
       <navbar />
-      <div class="content">
+      <div class="content" :class="{'full-width-content': !$store.getters.canShowNav}">
         <router-view/>
       </div>
     </div>
@@ -49,5 +49,9 @@ export default {
   }
   .content {
     flex: 1;
+    margin-left: 200px;
+  }
+  .full-width-content {
+    margin-left: 0;
   }
 </style>

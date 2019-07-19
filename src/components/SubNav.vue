@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div style="display: flex">
-                        <a href="javascript:;" class="mr-4" v-responsive.sm.xs>
+                        <a href="javascript:;" v-show="!$store.getters.canShowNav" @click="toggleNav" class="mr-4" v-responsive.sm.xs>
                             <i class="fa fa-2x fa-bars"></i>
                         </a>
                         <h1>{{title}}</h1>
@@ -34,6 +34,11 @@ export default {
         actions: {
             required: false,
             type: Array
+        }
+    },
+    methods: {
+        toggleNav() {
+            this.$store.commit('toggleNav');
         }
     }
 }

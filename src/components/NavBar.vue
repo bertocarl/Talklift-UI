@@ -1,6 +1,11 @@
 <template>
-    <div class="nav" v-responsive.lg.xl>
+    <div class="nav" :class="{'hide_menu': !$store.getters.canShowNav}">
         <div class="nav-wrapper">
+            <div class="p-2 text-right">
+                <a href="javascript:;" v-show="$store.getters.canShowNav" @click="toggleMenu">
+                    <i class="fa fa-2x fa-times"></i>
+                </a>
+            </div>
             <div class="profile">
                 <div class="avatar mb-2">
                     <avatar username="Cheruiyot Felix" :size="avatar_size"></avatar>
@@ -64,10 +69,18 @@ export default {
             avatar_size: 89
         }
     },
+    methods: {
+        toggleMenu() {
+            this.$store.commit('toggleNav');
+        }
+    }
 }
 </script>
 
 <style scoped>
+    .hide_menu {
+        display: none !important;
+    }
     .nav {
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -76,6 +89,7 @@ export default {
         background: url(../assets/img/dashboard-cover.jpeg) no-repeat center center fixed;
         width: 200px;
         height: 100vh;
+        position: fixed;
     }
     .nav-wrapper {
         height: 100vh;
