@@ -7,12 +7,6 @@
             </div>
             <div class="active">
                 <h5>Noey Human</h5>
-                <h6>3 hours ago...</h6>
-            </div>
-            <div class="header-icons">
-                <i class="fa fa-phone"></i>
-                <i class="fa fa-video-camera"></i>
-                <i class="fa fa-info-circle"></i>
             </div>
             </div>
         <p class="text-secondary nomessages" v-if="messages.length==0">
