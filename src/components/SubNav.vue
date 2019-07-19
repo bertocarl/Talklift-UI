@@ -1,9 +1,14 @@
 <template>
     <div class="subnav pt-3">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <h1>{{title}}</h1>
+                    <div style="display: flex">
+                        <a href="javascript:;" v-show="!$store.getters.canShowNav" @click="toggleNav" class="mr-4 menu-icon">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <h1>{{title}}</h1>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 text-right">
                     <ul class="list-inline" v-if="actions">
@@ -30,6 +35,11 @@ export default {
             required: false,
             type: Array
         }
+    },
+    methods: {
+        toggleNav() {
+            this.$store.commit('toggleNav');
+        }
     }
 }
 </script>
@@ -37,7 +47,6 @@ export default {
 <style scoped>
     .subnav {
         background: #dfdfdf;
-        margin-top: 55px;
         min-height: 57px;
     }
     h1 {
