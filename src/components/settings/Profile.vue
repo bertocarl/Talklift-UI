@@ -1,24 +1,14 @@
 <template>
   <div class="profile-details">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2 col-12 my-4">
-          <div class="cards">
-            <div class="card-body">
-              <div>{{profile.first_name}}</div>
-              <div>{{profile.last_name}}</div>
-              <div>{{profile.email}}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-10 col-12 my-4">
+        <div class="col-12 my-4">
           <div class="cards">
             <div class="card-body">
               <div class="card-title">
                 <h3>Profile</h3>
               </div>
-              <b-form @submit="onSubmit" @reset="onReset" v-if="show" action="javascript:;">
+              <b-form action="javascript:;">
                 <b-form-group label="First Name:">
                   <b-form-input
                     v-model="profile.first_name"
@@ -58,6 +48,8 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -68,15 +60,17 @@ export default {
   created() {
     this.getProfile();
   },
-
   methods: {
     getProfile() {
       let self = this;
       let loader = self.$loading.show();
-      axios
-        .post("/profile/")
-        .next(resp => {
-          self.profile = resp.data;
+      axios.get('profile/', {})
+        .then(resp => {
+          if (resp.data) {
+            if (resp.data.length > 0) {
+              self.profile = resp.data[0]
+            }
+          }
           loader.hide();
         })
         .catch(err => {

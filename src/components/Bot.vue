@@ -6,12 +6,10 @@
 
 <script>
 import BotModules from './bots/BotModules';
-import NewBot from './bots/NewBot';
 
 export default {
   components: {
-    BotModules,
-    NewBot 
+    BotModules
   }
 }
 </script>

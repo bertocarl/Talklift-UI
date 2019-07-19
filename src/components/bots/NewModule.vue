@@ -2,7 +2,7 @@
   <div class="module">
     <sub-nav title="Create Module" :actions="[]" />
     <div class="my-4">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-12 col-md-8 offset-md-2">
             <form action="javascript:;" @submit="createModule">

@@ -2,7 +2,7 @@
   <div class="add_contact">
     <sub-nav title="Add Contact" :actions="[]" />
     <div class="my-4">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
             <form action="javascript:;" @submit="add_contact">

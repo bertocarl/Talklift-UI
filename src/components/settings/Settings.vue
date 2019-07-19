@@ -2,7 +2,7 @@
   <div class="settings">
     <sub-nav title="Settings" />
     <div class="my-4">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <router-view />

@@ -2,7 +2,7 @@
   <div class="module-details">
     <sub-nav :title.sync="title" :actions.sync="nav_actions" />
     <div class="my-4">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-12 col-md-5">
             <h5>Module Triggers</h5>

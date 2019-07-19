@@ -2,7 +2,7 @@
   <div class="contacts">
     <sub-nav title="Contacts" :actions="[{label: 'Add Contact', href:'/#/contacts/new/', type:'primary', icon: 'fa fa-plus'}]" />
     <div class="my-4">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <div class="card" v-for="contact in contacts" :key="contact.id">

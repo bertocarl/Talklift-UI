@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <div class="container">
+    <div class="container-fluid">
       <b-alert show variant="secondary">Bot Settings</b-alert>
       <div class="row">
         <div class="col-md-6">

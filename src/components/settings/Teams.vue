@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <b-modal v-model="show_modal" hide-footer title="New Team" @hidden="hideModal">
         <form @submit="createTeam" action="javascript:;">
