@@ -3,7 +3,7 @@
     <div class="container-fluid full-height">
       <div class="row full-height">
         <div class="col-12 col-md-4 full-height valign">
-          <form @submit="signup" action="javascript:;">
+          <form @submit="doSignup" action="javascript:;">
             <h1 class="text-center py-4">Sign Up</h1>
             <div class="form-group">
               <label class="control-label">Email</label>
@@ -72,7 +72,7 @@ export default {
     };
   },
   methods: {
-    signup() {
+    doSignup() {
       let self = this;
       this.$validator.validate().then(valid => {
         if (valid) {
