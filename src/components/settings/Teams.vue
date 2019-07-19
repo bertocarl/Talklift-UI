@@ -28,8 +28,8 @@
               v-model="forms.roles"
               placeholder="Enter a user role"
             />
-          </div> -->
-          
+          </div>-->
+
           <div class="form-group">
             <label class="control-label">User Role</label>
             <select class="form-control form-control-sm">
@@ -67,7 +67,7 @@ export default {
     },
     createTeam() {
       let self = this;
-      let loader = vself.$laoding.show();
+      let loader = self.$laoding.show();
       axios
         .post("/team/", this.form)
         .then(resp => {

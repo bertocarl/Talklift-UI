@@ -4,20 +4,11 @@
       <div class="row">
         <div class="col-md-2 col-12 my-4">
           <div class="cards">
-            <b-card
-              header="Profile"
-              header-text-variant="white"
-              header-tag="header"
-              header-bg-variant="dark"
-              footer="()"
-              footer-tag="footer"
-              footer-bg-variant="success"
-              footer-border-variant="white"
-              title="Avatar"
-              style="max-width: 20rem;"
-            >
-              <b-card-text>User Profile</b-card-text>
-            </b-card>
+            <div class="card-body" v-for="profile in get_profile" :key="profile.id">
+              <div>{{profile.first_name}}</div>
+              <div>{{profile.last_name}}</div>
+              <div>{{profile.email}}</div>
+            </div>
           </div>
         </div>
 
@@ -28,18 +19,18 @@
                 <h3>Profile</h3>
               </div>
               <b-form @submit="onSubmit" @reset="onReset" v-if="show" action="javascript:;">
-                <b-form-group label="User Name:">
+                <b-form-group label="First Name:">
                   <b-form-input
-                    v-model="form.username"
+                    v-model="form.firstname"
                     type="text"
                     required
-                    placeholder="User Name"
+                    placeholder="First Name"
                   ></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="Last Name:">
                   <b-form-input
-                    v-model="form.lastname"
+                    v-model="form.last_name"
                     type="text"
                     required
                     placeholder="Last name"
@@ -71,14 +62,58 @@ export default {
   data() {
     return {
       form: {
-        lastname: "",
+        last_name: "",
         email: "",
-        username: ""
+        first_name: ""
       },
-      show: true
+      show: true,
+      get_profile: []
     };
   },
-  methods: {}
+
+  created() {
+    this.get_profile();
+  },
+
+  methods: {
+    createProfile() {
+      let self = this;
+      let loader = self.$loading.show();
+      axios
+        .post("profile/", this.form)
+        .then(resp => {
+          loader.hide();
+          console.log("Profile created");
+        })
+
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+        });
+    },
+
+    getProfile() {
+      let self = this;
+      let loader = self.$loading.show();
+      axios
+        .post("/profile/")
+        .next(resp => {
+          self.get_profile = resp.data;
+          loader.hide();
+          console.log("Profile gotten");
+        })
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+          self.$notify({
+            group: "default",
+            type: "error",
+            title: err,
+            text: err.response.data
+          });
+        });
+    }
+  }
 };
 </script>
 
