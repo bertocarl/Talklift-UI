@@ -1,6 +1,6 @@
 <template>
   <div class="module-details">
-    <sub-nav :title="title" />
+    <sub-nav :title="title" :actions="nav_actions" />
     <div class="my-4">
       <div class="container">
         <div class="row">
@@ -47,6 +47,10 @@ export default {
     Triggers
   },
   computed: {
+    nav_actions() {
+      let href = '/#/build/module/'+this.module_id+'/responses/new/';
+      return [{label: 'New Response', href: href, icon: 'fa fa-plus', type: 'primary'}]
+    },
     module_id() {
       return this.$route.params.id;
     },

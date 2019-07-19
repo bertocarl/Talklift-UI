@@ -7,13 +7,14 @@ import Loading from 'vue-loading-overlay'
 import VeeValidate from 'vee-validate'
 import Notifications from 'vue-notification'
 import VueChatScroll from 'vue-chat-scroll'
+import responsive from 'vue-responsive'
 
 import store from './store'
 import Login from './components/Login'
 import Logout from './components/Logout'
 
 import Register from './components/Register'
-import AddBusiness from './components/AddBusiness'
+import UpdateBusiness from './components/business/UpdateBusiness'
 
 import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
@@ -58,9 +59,9 @@ Vue.use(VeeValidate, {
   fieldsBagName: 'veeFields'
 })
 Vue.use(Notifications)
+Vue.use(responsive)
 
 axios.defaults.baseURL = 'https://api.talklift.com'
-
 axios.interceptors.request.use(function (request) {
   request.headers['token'] = store.getters.getAccessToken
   return request
@@ -78,13 +79,33 @@ axios.interceptors.response.use(function (response) {
 })
 
 const routes = [
-  { path: '/', component: Bot, name: 'index' },
-  { path: '/login', component: Login, name: 'login' },
+  { path: '/', component: Login, name: 'login' },
   { path: '/logout', component: Logout, name: 'logout' },
   { path: '/signup/', component: Register, name: 'signup' },
-  { path: '/business/', component: AddBusiness, name: 'update_business' },
-  { path: '/newmodule/', component: NewModule, name: 'new_module' },
-
+  // Inbox routes
+  { path: '/inbox/',
+    component: Inbox,
+    children: [
+      { path: '', component: InboxContacts, name: 'inbox' },
+      { path: 'messages/:contact_id', component: Messages, name: 'messages' }
+    ]
+  },
+  // Bot routes
+  { path: '/build', component: Bot, name: 'index' },
+  { path: '/build/new/', component: NewModule, name: 'new_module' },
+  { path: '/build/module/:id/',
+    component: ModuleDetails,
+    name: 'module_details',
+    children: [
+      { path: 'responses/new/', component: NewResponse, name: 'new_response' },
+      { path: 'responses/:response_id/manage', component: EditResponse, name: 'edit_response' }
+    ]
+  },
+  // Contacts routes
+  { path: '/contacts/', component: Contacts, name: 'contacts' },
+  { path: '/contacts/new/', component: AddContact, name: 'new_contact' },
+  // Business routes
+  { path: '/business/', component: UpdateBusiness, name: 'update_business' },
   // Settings routes
   { path: '/settings/',
     component: Settings,
@@ -93,27 +114,7 @@ const routes = [
       { path: '/profile/', component: Profile, name: 'profile' },
       { path: '/teams/', component: Teams, name: 'teams' }
     ]
-  },
-  // Inbox routes
-  { path: '/inbox/',
-    component: Inbox,
-    children: [
-      { path: '', component: InboxContacts, name: 'inbox_contacts' },
-      { path: 'messages/:contact_id', component: Messages, name: 'messages' }
-    ]
-  },
-  // Bot routes
-  { path: '/module/:id/',
-    component: ModuleDetails,
-    name: 'module_details',
-    children: [
-      { path: 'new-response', component: NewResponse, name: 'new_response' },
-      { path: 'responses/:response_id', component: EditResponse, name: 'edit_response' }
-    ]
-  },
-  // Contacts routes
-  { path: '/new-contact/', component: AddContact, name: 'new_contact' },
-  { path: '/contacts/', component: Contacts, name: 'contacts' }
+  }
 ]
 
 const router = new VueRouter({ routes })

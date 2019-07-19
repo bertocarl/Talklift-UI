@@ -39,7 +39,6 @@
 
 <script>
 import axios from "axios";
-import store from "./../store";
 
 export default {
   data() {
@@ -57,24 +56,22 @@ export default {
     getBusiness() {
       let self = this;
       let loader = self.$loading.show();
-      axios.get("businesses/", config).then(resp => {
+      axios.get("businesses/", {}).then(resp => {
         if (resp.data) {
           if (resp.data.length > 0) {
             self.business = resp.data[0];
+            loader.hide()
           }
         }
-      });
-      loader.hide().catch(err => {
+      }).catch(err => {
         console.log("Error", err);
+        loader.hide()
       });
-      loader.hide();
     },
-
     updatebusiness() {
       let self = this;
       let loader = self.$loading.show();
-      axios
-        .put("businesses/" + this.business.id + "/", this.business, config)
+      axios.put("businesses/" + this.business.id + "/", this.business, config)
         .then(resp => {
           self.$router.push({ name: "index" });
           loader.hide();

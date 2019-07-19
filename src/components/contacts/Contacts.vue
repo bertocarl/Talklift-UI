@@ -1,6 +1,6 @@
 <template>
   <div class="contacts">
-    <sub-nav title="Contacts" :actions="[{label: 'Add Contact', href:'/#/new-contact/', type:'primary', icon: 'fa fa-plus'}]" />
+    <sub-nav title="Contacts" :actions="[{label: 'Add Contact', href:'/#/contacts/new/', type:'primary', icon: 'fa fa-plus'}]" />
     <div class="my-4">
       <div class="container">
         <div class="row">
