@@ -1,10 +1,10 @@
 <template>
-  <div class="login valign">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-4 offset-md-4">
+  <div class="login">
+    <div class="container-fluid full-height">
+      <div class="row full-height">
+        <div class="col-12 col-md-4 bg-light full-height valign">
           <form @submit="doLogin" action="javascript:;">
-            <h1 class="text-center py-4">Sign in</h1>
+            <h1 class="text-center py-4">Sign In</h1>
             <div class="form-group">
               <label class="control-label">Email</label>
               <input
@@ -41,6 +41,15 @@
               </div>
             </div>
           </form>
+        </div>
+        <div class="cover login-cover col-md-8 align-text-bottom">
+          <!-- Display cover image -->
+          <div class="row">
+            <div class="col-8">
+              <h2>Customer engagement simplified</h2>
+              <p>Easily manage conversations across multiple platforms. Boostrap a SMS/USSD campaign in minutes. Publish a chatbot on Telegram, Messenger, and many more.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -112,8 +121,10 @@ export default {
 }
 </script>
 
+<style src="./../assets/css/auth.css"></style>
 <style scoped>
 .login {
   min-height: 100vh;
 }
+
 </style>

@@ -73,8 +73,8 @@ axios.interceptors.response.use(function (response) {
 })
 
 const routes = [
-  { path: '/', component: Bot, name: 'index' },
-  { path: '/login', component: Login, name: 'login' },
+  { path: '/', component: Login, name: 'login' },
+  { path: '/build', component: Bot, name: 'index' },
   { path: '/logout', component: Logout, name: 'logout' },
   { path: '/signup/', component: Register, name: 'signup' },
   { path: '/business/', component: AddBusiness, name: 'update_business' },

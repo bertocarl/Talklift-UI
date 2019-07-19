@@ -13,12 +13,16 @@ html, body {
     font-size: 1em;
     font-weight: 400;
     background: #fafafa;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
 }
 
 h1 {
     font-size: 27px;
 }
 
+/* Cards */
 .card {
     border-radius: 0;
     color: #444;
@@ -30,6 +34,7 @@ h1 {
     background: #fafafa;
 }
 
+/* Buttons */
 .box-shadow, .btn {
     -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
@@ -37,5 +42,15 @@ h1 {
 }
 
 .btn {
+    border-radius: 6.25rem !important;
+}
+
+.btn:hover, .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Forms */
+.form-control {
     border-radius: 6.25rem !important;
 }
