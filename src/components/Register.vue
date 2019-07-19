@@ -2,7 +2,7 @@
   <div class="register">
     <div class="container-fluid full-height">
       <div class="row full-height">
-        <div class="col-12 col-md-4 valign full-height">
+        <div class="col-12 col-md-4 valign full-height overflow-y">
           <form @submit="doSignup" action="javascript:;">
             <div class="header text-center">
               <img src="./../assets/img/logo.png" class="logo" />
@@ -45,7 +45,7 @@
             </div>
           </form>
         </div>
-        <div class="cover signup-cover col-md-8 align-text-bottom">
+        <div class="cover signup-cover col-md-8 align-text-bottom" v-responsive.lg.xl>
           <div class="row">
             <div class="col-8">
               <h2>Start something new by joining 500+ businesses like yours</h2>

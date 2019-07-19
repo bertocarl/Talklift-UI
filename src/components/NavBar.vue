@@ -3,7 +3,7 @@
         <div class="nav-wrapper">
             <div class="profile">
                 <div class="avatar mb-2">
-                    <avatar username="Cheruiyot Felix" size=89></avatar>
+                    <avatar username="Cheruiyot Felix" :size="avatar_size"></avatar>
                 </div>
                 <div class="name">
                     <b-dropdown size="sm" class="name-dropdown">
@@ -58,7 +58,12 @@ import Avatar from 'vue-avatar'
 export default {
     components: {
         Avatar
-    }
+    },
+    data() {
+        return {
+            avatar_size: 89
+        }
+    },
 }
 </script>
 

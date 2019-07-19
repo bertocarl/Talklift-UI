@@ -54,3 +54,8 @@ h1 {
 .form-control {
     border-radius: 6.25rem !important;
 }
+
+/* Utilities */
+.overflow-y {
+    overflow-y: auto !important;
+}

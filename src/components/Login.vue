@@ -2,7 +2,7 @@
   <div class="login">
     <div class="container-fluid full-height">
       <div class="row full-height">
-        <div class="col-12 col-md-4 bg-light full-height valign">
+        <div class="col-12 col-md-4 bg-light full-height valign overflow-y">
           <form @submit="doLogin" action="javascript:;">
             <div class="header text-center">
               <img src="./../assets/img/logo.png" class="logo" />
@@ -45,7 +45,7 @@
             </div>
           </form>
         </div>
-        <div class="cover login-cover col-md-8 align-text-bottom">
+        <div class="cover login-cover col-md-8 align-text-bottom" v-responsive.lg.xl>
           <!-- Display cover image -->
           <div class="row">
             <div class="col-8">
