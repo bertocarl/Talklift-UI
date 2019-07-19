@@ -6,7 +6,7 @@ export default new Vuex.Store({
   state: {
     access_token: null,
     currentUser: {},
-    display_nav: true
+    display_nav: false
   },
   getters: {
     getAccessToken (state) {

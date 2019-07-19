@@ -1,11 +1,11 @@
 <template>
     <div class="subnav pt-3">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div style="display: flex">
-                        <a href="javascript:;" v-show="!$store.getters.canShowNav" @click="toggleNav" class="mr-4" v-responsive.sm.xs>
-                            <i class="fa fa-2x fa-bars"></i>
+                        <a href="javascript:;" v-show="!$store.getters.canShowNav" @click="toggleNav" class="mr-4 menu-icon">
+                            <i class="fa fa-bars"></i>
                         </a>
                         <h1>{{title}}</h1>
                     </div>

@@ -1,9 +1,9 @@
 <template>
     <div class="nav" :class="{'hide_menu': !$store.getters.canShowNav}">
         <div class="nav-wrapper">
-            <div class="p-2 text-right">
-                <a href="javascript:;" v-show="$store.getters.canShowNav" @click="toggleMenu">
-                    <i class="fa fa-2x fa-times"></i>
+            <div class="pr-3 pt-3 text-right">
+                <a href="javascript:;" class="menu-icon" v-show="$store.getters.canShowNav" @click="toggleMenu">
+                    <i class="fa fa-bars"></i>
                 </a>
             </div>
             <div class="profile">
@@ -78,6 +78,9 @@ export default {
 </script>
 
 <style scoped>
+    .menu-icon {
+        color: #efefef !important;
+    } 
     .hide_menu {
         display: none !important;
     }
