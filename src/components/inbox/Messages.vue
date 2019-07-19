@@ -70,7 +70,7 @@ export default {
         sendMessage: function() {
             let self = this;
             let payload = this.new_message;
-            payload['sender'] = 'SUPPORT';
+            payload['sender'] = 'CONTACT';
             payload['contact_id'] = this.contact_id;
             payload['platform'] = 'SMS';
 
