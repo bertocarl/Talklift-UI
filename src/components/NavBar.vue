@@ -22,7 +22,7 @@
             <div class="links">
                 <ul class="list-unstyled">
                     <li class="list-item">
-                        <router-link :to="{name: 'index'}">
+                        <router-link :to="{name: 'get_started'}">
                             <i class="fa fa-home"></i>&nbsp;
                             <span>Get started</span>
                         </router-link>

@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <sub-nav title="Settings" :actions="[]" />
+    <sub-nav title="Settings" />
     <div class="my-4">
       <div class="container">
         <div class="row">

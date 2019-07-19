@@ -12,8 +12,9 @@ import responsive from 'vue-responsive'
 import store from './store'
 import Login from './components/Login'
 import Logout from './components/Logout'
-
 import Register from './components/Register'
+import GetStarted from './components/GetStarted'
+
 import UpdateBusiness from './components/business/UpdateBusiness'
 
 import Bot from './components/Bot'
@@ -82,6 +83,7 @@ const routes = [
   { path: '/', component: Login, name: 'login' },
   { path: '/logout', component: Logout, name: 'logout' },
   { path: '/signup/', component: Register, name: 'signup' },
+  { path: '/get-started/', component: GetStarted, name: 'get_started' },
   // Inbox routes
   { path: '/inbox/',
     component: Inbox,

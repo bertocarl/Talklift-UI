@@ -48,6 +48,8 @@ export default {
     .subnav {
         background: #dfdfdf;
         min-height: 57px;
+        width: 100%;
+        z-index: 1030;
     }
     h1 {
         font-size: 1.4em;

@@ -1,6 +1,6 @@
 <template>
   <div class="module-details">
-    <sub-nav :title="title" :actions="nav_actions" />
+    <sub-nav :title.sync="title" :actions.sync="nav_actions" />
     <div class="my-4">
       <div class="container">
         <div class="row">
