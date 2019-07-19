@@ -87,6 +87,12 @@ export default {
             .catch(function(err) {
               loader.hide();
               console.log("Error", err);
+              self.$notify({
+                  group: 'default',
+                  type: 'error',
+                  title: err,
+                  text: 'User with similar account details already exists.'
+              });
             });
         }
       })

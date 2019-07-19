@@ -4,7 +4,7 @@
       <div class="row full-height">
         <div class="col-12 col-md-4 bg-light full-height valign">
           <form @submit="doLogin" action="javascript:;">
-            <h1 class="text-center py-4">Sign In</h1>
+            <h1 class="text-center py-4">Welcome Back!</h1>
             <div class="form-group">
               <label class="control-label">Email</label>
               <input
