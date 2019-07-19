@@ -37,7 +37,6 @@ export default {
 <style scoped>
     .subnav {
         background: #dfdfdf;
-        margin-top: 55px;
         min-height: 57px;
     }
     h1 {
