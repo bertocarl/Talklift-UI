@@ -36,6 +36,9 @@ import Messages from './components/inbox/Messages'
 import AddContact from './components/contacts/AddContact'
 import Contacts from './components/contacts/Contacts'
 
+import Reports from './components/Reports'
+import TrainBot from './components/TrainBot'
+
 // Global css files
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -116,7 +119,9 @@ const routes = [
       { path: '/profile/', component: Profile, name: 'profile' },
       { path: '/teams/', component: Teams, name: 'teams' }
     ]
-  }
+  },
+  { path: '/train-bot/', component: TrainBot, name: 'train_bot' },
+  { path: '/reports/', component: Reports, name: 'reports' } 
 ]
 
 const router = new VueRouter({ routes })

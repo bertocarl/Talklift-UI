@@ -34,6 +34,12 @@
                         </router-link>
                     </li>
                     <li class="list-item">
+                        <router-link :to="{name: 'train_bot'}">
+                            <i class="fa fa-robot"></i>&nbsp;
+                            <span>Train AI</span>
+                        </router-link>
+                    </li>
+                    <li class="list-item">
                         <router-link :to="{name: 'inbox'}">
                             <i class="fa fa-inbox"></i>&nbsp;
                             <span>Inbox</span>
@@ -43,6 +49,12 @@
                         <router-link :to="{name: 'contacts'}">
                             <i class="fa fa-user"></i>&nbsp;
                             <span>Contacts</span>
+                        </router-link>
+                    </li>
+                    <li class="list-item">
+                        <router-link :to="{name: 'reports'}">
+                            <i class="fa fa-chart-line"></i>&nbsp;
+                            <span>Reports</span>
                         </router-link>
                     </li>
                     <li class="list-item">
