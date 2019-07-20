@@ -8,10 +8,12 @@
     >
       <div class="card-body">
         <div class="row">
-          <div class="col-12 col-md-4">
-            <avatar :username="contact|getAvatar"></avatar>  {{contact.first_name}} {{contact.last_name}}
+          <div class="col-md-3">
+            <avatar :username="contact|getAvatar" :size="avatar_size"></avatar>
           </div>
-          <div class="col-12 col-md-4">{{contact.email}} {{contact.phone_number}}</div>
+          <div class="col-md-9">
+            {{contact.first_name}} {{contact.last_name}}
+          </div>
         </div>
       </div>
     </router-link>
@@ -29,6 +31,7 @@ export default {
   },
   data() {
     return {
+      avatar_size: 34,
       contacts: []
     };
   },

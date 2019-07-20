@@ -56,6 +56,14 @@ export default {
             contact: {}
         }
     },
+    watch: {
+        contact_id(newVal, oldVal) {
+            if (newVal) {
+                this.getContact();
+                this.getMessages();
+            }
+        }
+    },
     filters: {
         getAvatar(contact) {
             if (contact.avatar) return contact.avatar
