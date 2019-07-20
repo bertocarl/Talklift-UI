@@ -34,9 +34,9 @@
                         </router-link>
                     </li>
                     <li class="list-item">
-                        <router-link :to="{name: 'train_bot'}">
-                            <i class="fa fa-robot"></i>&nbsp;
-                            <span>Train AI</span>
+                        <router-link :to="{name: 'knowledge_base'}">
+                            <i class="fa fa-book"></i>&nbsp;
+                            <span>Knowledge base</span>
                         </router-link>
                     </li>
                     <li class="list-item">

@@ -37,7 +37,7 @@ import AddContact from './components/contacts/AddContact'
 import Contacts from './components/contacts/Contacts'
 
 import Reports from './components/Reports'
-import TrainBot from './components/TrainBot'
+import KnowledgeBase from './components/KnowledgeBase'
 
 // Global css files
 import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -120,7 +120,7 @@ const routes = [
       { path: '/teams/', component: Teams, name: 'teams' }
     ]
   },
-  { path: '/train-bot/', component: TrainBot, name: 'train_bot' },
+  { path: '/knowledge-base/', component: KnowledgeBase, name: 'knowledge_base' },
   { path: '/reports/', component: Reports, name: 'reports' }
 ]
 
