@@ -121,7 +121,7 @@ const routes = [
     ]
   },
   { path: '/train-bot/', component: TrainBot, name: 'train_bot' },
-  { path: '/reports/', component: Reports, name: 'reports' } 
+  { path: '/reports/', component: Reports, name: 'reports' }
 ]
 
 const router = new VueRouter({ routes })
