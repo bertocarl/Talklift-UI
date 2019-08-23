@@ -1,6 +1,6 @@
 <template>
-    <div class="new-bot">
-        New bot
+    <div class="reports">
+        Reports
     </div>
 </template>
 

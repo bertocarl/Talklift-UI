@@ -1,16 +1,15 @@
 <template>
-    
-
-    <div class="register">
+    <div>
+        Get started
     </div>
 </template>
 
 <script>
 export default {
-
+    
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

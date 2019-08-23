@@ -6,25 +6,40 @@ import BootstrapVue from 'bootstrap-vue'
 import Loading from 'vue-loading-overlay'
 import VeeValidate from 'vee-validate'
 import Notifications from 'vue-notification'
+import VueChatScroll from 'vue-chat-scroll'
+import responsive from 'vue-responsive'
 
 import store from './store'
 import Login from './components/Login'
 import Logout from './components/Logout'
-
 import Register from './components/Register'
-import AddBusiness from './components/AddBusiness'
+import GetStarted from './components/GetStarted'
+
+import UpdateBusiness from './components/business/UpdateBusiness'
 
 import Bot from './components/Bot'
 import ModuleDetails from './components/bots/ModuleDetails'
 import NewResponse from './components/bots/NewResponse'
-import AddContacts from './components/contacts/AddContacts'
 
-import Profile from './components/Profile'
-import Contacts from './components/Contacts'
-import AddContact from './components/AddContact'
+import Profile from './components/settings/Profile'
+import Settings from './components/settings/Settings'
+import SettingsUpdate from './components/settings/SettingsUpdate'
+import Teams from './components/settings/Teams'
+
 import NewModule from './components/bots/NewModule'
+import EditResponse from './components/bots/EditResponse'
+
+import Inbox from './components/inbox/Inbox'
+import Messages from './components/inbox/Messages'
+
+import AddContact from './components/contacts/AddContact'
+import Contacts from './components/contacts/Contacts'
+
+import Reports from './components/Reports'
+import KnowledgeBase from './components/KnowledgeBase'
 
 // Global css files
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-loading-overlay/dist/vue-loading.css'
@@ -32,6 +47,7 @@ import './assets/css/global.css'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+Vue.use(VueChatScroll)
 Vue.use(Loading, {
   color: '#000000',
   loader: 'dots',
@@ -46,11 +62,10 @@ Vue.use(VeeValidate, {
   fieldsBagName: 'veeFields'
 })
 Vue.use(Notifications)
+Vue.use(responsive)
 
 axios.defaults.baseURL = 'https://api.talklift.com'
-
 axios.interceptors.request.use(function (request) {
-  console.log('requests', request)
   request.headers['token'] = store.getters.getAccessToken
   return request
 }, function (error) {
@@ -67,21 +82,45 @@ axios.interceptors.response.use(function (response) {
 })
 
 const routes = [
-  { path: '/', component: Bot, name: 'index' },
-  { path: '/login', component: Login, name: 'login' },
+  { path: '/', component: Login, name: 'login' },
   { path: '/logout', component: Logout, name: 'logout' },
   { path: '/signup/', component: Register, name: 'signup' },
-  { path: '/business/', component: AddBusiness, name: 'update_business' },
-  { path: '/profile/', component: Profile, name: 'profile' },
-  { path: '/contacts/', component: Contacts, name: 'contacts' },
-  { path: '/addcontact/', component: AddContact, name: 'add_contact' },
-  { path: '/newmodule/', component: NewModule, name: 'new_module' },
-
+  { path: '/get-started/', component: GetStarted, name: 'get_started' },
+  // Inbox routes
+  { path: '/inbox/',
+    component: Inbox,
+    name: 'inbox',
+    children: [
+      { path: 'messages/:contact_id', component: Messages, name: 'messages' }
+    ]
+  },
   // Bot routes
-  { path: '/module/:id/', component: ModuleDetails, name: 'module_details' },
-  { path: '/module/:id/new-response', component: NewResponse, name: 'new_response' },
+  { path: '/build', component: Bot, name: 'index' },
+  { path: '/build/new/', component: NewModule, name: 'new_module' },
+  { path: '/build/module/:id/',
+    component: ModuleDetails,
+    name: 'module_details',
+    children: [
+      { path: 'responses/new/', component: NewResponse, name: 'new_response' },
+      { path: 'responses/:response_id/manage', component: EditResponse, name: 'edit_response' }
+    ]
+  },
   // Contacts routes
-  { path: '/contacts/', component: AddContacts, name: 'update_contacts'},
+  { path: '/contacts/', component: Contacts, name: 'contacts' },
+  { path: '/contacts/new/', component: AddContact, name: 'new_contact' },
+  // Business routes
+  { path: '/business/', component: UpdateBusiness, name: 'update_business' },
+  // Settings routes
+  { path: '/settings/',
+    component: Settings,
+    children: [
+      { path: '', component: SettingsUpdate, name: 'settings_update' },
+      { path: '/profile/', component: Profile, name: 'profile' },
+      { path: '/teams/', component: Teams, name: 'teams' }
+    ]
+  },
+  { path: '/knowledge-base/', component: KnowledgeBase, name: 'knowledge_base' },
+  { path: '/reports/', component: Reports, name: 'reports' }
 ]
 
 const router = new VueRouter({ routes })

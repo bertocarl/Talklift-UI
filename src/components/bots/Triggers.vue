@@ -1,72 +1,106 @@
 <template>
   <div class="triggers">
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-3">
-          <form @submit="submitForm" action="javascript:;">
-            <div class="form-group">
-              <label class="control-label">Trigger</label>
-              <input
-                name="text"
-                class="form-control"
-                required
-                v-model="form.text"
-                placeholder="Enter a trigger"
-              />
-            </div>
-            <div class="actions">
-              <button type="submit" class="btn btn-primary">Create A Trigger</button>
-            </div>
-          </form>
-        </div>
+    <div class="row">
+      <div class="col-12">
+        <multiselect
+          v-model="triggers"
+          tag-placeholder="Add this as new trigger"
+          placeholder="Search or add a trigger"
+          label="text"
+          track-by="id"
+          :options="triggers"
+          :multiple="true"
+          :taggable="true"
+          @tag="addTrigger"
+          @remove="removeTrigger"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
+import Multiselect from "vue-multiselect";
 
 export default {
-
-  props: {
-    triggers: {
-      required: true,
-      type: Array
-    }
+  components: {
+    Multiselect
   },
   computed: {
     module_id() {
-      return this.$route.params.id
+      return this.$route.params.id;
     }
   },
   data() {
     return {
+      triggers: [],
       form: {
         text: ""
       }
     };
   },
 
+  created() {
+    this.getTriggers();
+  },
+
   methods: {
-    submitForm: function() {
+    removeTrigger(trigger) {
       let self = this;
-      let payload = this.form;
-      payload['module_id'] = this.module_id
+      let loader = self.$loading.show();
       axios
-        .post("triggers/", payload)
+        .delete("triggers/" + trigger.id + "/", {})
         .then(resp => {
-          self.$router.push({ name: "index" });
+          loader.hide();
         })
         .catch(err => {
           console.log("Error", err);
+          loader.hide();
+        });
+    },
+    addTrigger(text) {
+      let self = this;
+      let payload = this.form;
+      let loader = self.$loading.show();
+      payload["module_id"] = this.module_id;
+      payload["text"] = text;
+      axios
+        .post("triggers/", payload)
+        .then(resp => {
+          loader.hide();
+          self.triggers.push(resp.data);
+        })
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+        });
+    },
+    getTriggers() {
+      let self = this;
+      let loader = self.$loading.show();
+      axios
+        .get("triggers/", { params: { module: this.module_id } })
+        .then(resp => {
+          this.triggers = resp.data;
+          loader.hide();
+        })
+        .catch(err => {
+          console.log("Error", err);
+          loader.hide();
+          self.$notify({
+            group: "default",
+            type: "error",
+            title: err,
+            text: err.response.data
+          });
         });
     }
   }
 };
-
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style scoped>
 </style>

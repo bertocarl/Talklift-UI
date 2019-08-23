@@ -1,16 +1,51 @@
 <template>
   <div class="responses">
-    Responses
-    {{responses}}
+    <div class="row">
+      <div class="col-12" v-for="response in responses" :key="response.id">
+        <router-link
+          class="card mb-2"
+          :to="{name: 'edit_response', params: {response_id: response.id, id: module_id} }"
+        >
+          <div class="card-body">
+            <div>{{response.content.text}}</div>
+            <div>{{response.content.quick_replies}}</div>
+          </div>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  props: {
-    responses: {
-      required: true,
-      type: Array
+  computed: {
+    module_id() {
+      return this.$route.params.id;
+    }
+  },
+  data() {
+    return {
+      responses: []
+    };
+  },
+
+  created() {
+    this.getResponses();
+  },
+
+  methods: {
+    getResponses: function() {
+      let self = this;
+      axios
+        .get("responses/", { params: { module: this.module_id } })
+        .then(resp => {
+          this.responses = resp.data;
+        })
+        .catch(err => {
+          console.log("Error", err);
+        });
     }
   }
 };
